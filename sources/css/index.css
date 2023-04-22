@@ -1,0 +1,255 @@
+@import url("module.css");
+
+.application{
+    height: 100vh;
+
+    display: flex;
+
+    background-color: #f0f0f4;
+}
+
+.fl1{
+    flex: 1;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    overflow: auto;
+}
+
+.fl2{
+    width: 600px;
+
+    background-color: #23222b;
+}
+
+.box{
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+    position: relative;
+
+    background-color: #ffffff;
+    box-shadow: 0 0 0 5px #f9f9fb;
+    border-radius: 40px;
+}
+
+.dropzone{
+    aspect-ratio: 16 / 10;
+    width: 100%;
+
+    margin: auto;
+    padding: 60px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    border: 2px dashed #dadada;
+
+    box-shadow: 0 0 0 10px #fff;
+}
+
+.highlight{
+    background-color: #0000ff;
+}
+
+.indiquator{
+    margin: 20px 0 0 0;
+    
+}
+
+.sub{
+    margin: 35px auto 0 auto;
+    padding: 10px 20px;
+
+    display: block;
+
+    border: none;
+
+    background-color: #ccccff;
+    border-radius: 20px;
+    box-shadow: 0 0 0 5px #e4e4ff;
+
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.sub:hover{
+    box-shadow: 0 0 0 10px #e4e4ff;
+}
+
+.title{
+    margin: 0 0 6px 0;
+    font-size: 1.6em;
+}
+
+.subtitle{
+    font-size: 1em;
+}
+
+.description{
+    text-align: center;
+    font-size: 1em;
+    color: #a3a3a3;
+}
+
+
+
+
+
+
+
+
+.drag-image{
+    width: 100%;
+
+    padding: 20px 20px 30px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border: 2px dashed #dadada;
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+.drag-image.active{
+    border: 2px solid #ff0000;
+}
+
+.box-icon{
+    font-size: 5em;
+}
+
+.drag-image .icon{
+    font-size: 30px;
+    color: #ff0000;
+}
+
+.drag-image .separator{
+    margin: 15px 0 20px 0;
+
+    font-weight: bold;
+}
+
+.drag-image button{
+    padding: 10px 15px;
+    
+    display: block;
+    
+    background-color: #ffbe00;
+    box-shadow: 0 0 0 5px #ffe38f;
+    border: none;
+    border-radius: 20px;
+
+    font-size: 1em;
+
+    cursor: pointer;
+}
+
+.drag-image button:hover{
+    box-shadow: 0 0 0 10px #ffe38f;
+}
+
+.drag-image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.onglet{
+    width: 100%;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border: 2px solid #dadada;
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+.message{
+    margin: 30px 0 0 0;
+}
+
+
+
+
+.dowl{
+    padding: 20px;
+
+    display: flex;
+    gap: 30px;
+
+    background-color: #ffbe00;
+
+    border-radius: 30px;
+}
+
+.dowl > div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+
+/* Dark mode */
+
+.application.dark-mode{
+    background-color: #1c1b22;
+}
+
+.box.dark-mode{
+    background-color: #2b2a33;
+    
+    box-shadow: 0 0 0 5px #23222b;
+
+    color : #fff;
+}
+
+.drag-image.dark-mode{
+    border: 2px dashed #42414d;
+}
+
+.onglet.dark-mode{
+    border: 2px solid #42414d;
+}
+
+.drag-image.dark-mode button{
+    background-color: #ffbe00;
+
+    box-shadow: 0 0 0 5px #9d7600;
+}
+
+.drag-image.dark-mode button:hover{
+    box-shadow: 0 0 0 10px #9d7600;
+}
+
+.fl2.dark-mode{
+    background-color: #2b2a33;
+}
