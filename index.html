@@ -50,24 +50,55 @@
 
     <main class="application">
         <div class="fl1">
+            <nav class="selection">
+                <button class="onglet a-onglet" data-onglet="1">
+                    <span>Etape 1</span>
+                </button>
+                <i class="fa-solid fa-chevron-right"></i>
+                <button class="onglet" data-onglet="2">
+                    <span>Etape 2</span>
+                </button>
+                <i class="fa-solid fa-chevron-right"></i>
+                <button class="onglet" data-onglet="3">
+                    <span>Etape 3</span>
+                </button>
+                <i class="fa-solid fa-chevron-right"></i>
+                <button class="onglet" data-onglet="4">
+                    <span>Etape 4</span>
+                </button>
+            </nav>
             <div class="box">
-                <form action="" method="post">
-                    <div class="drag-image">
-                        <i class="fa-solid fa-file-arrow-up box-icon"></i>
-                        <span class="indiquator">Drag and drop file here.</span>
-                        <span class="separator">OR</span>
-                        <button>Browse File</button>
-                        <input type="file" accept=".pgn" name="file" id="file" hidden>
+                <div>
+                    <div class="onglet-page a-onglet-page" data-onglet="1">
+                        <form action="" method="post" class="dropzone-from">
+                            <div class="drag-image">
+                                <i class="fa-solid fa-file-arrow-up box-icon"></i>
+                                <span class="indiquator">Drag and drop file here.</span>
+                                <span class="separator">OR</span>
+                                <button>Browse File</button>
+                                <input type="file" accept=".pgn" name="file" id="file" hidden>
+                            </div>
+                        </form>
                     </div>
-                    <div class="onglet">
-                        <i class="fa-solid fa-file-circle-exclamation box-icon"></i>
-                        <span class="message">Wrong file or extension file.</span>
+                    <div class="onglet-page" data-onglet="2">
+                        <div class="onglet-content">
+                            <i class="fa-solid fa-file-circle-exclamation box-icon"></i>
+                            <span class="message">Wrong file or extension file.</span>
+                        </div>
                     </div>
-                    <div class="onglet">
-                        <i class="fa-solid fa-file-arrow-down box-icon"></i>
-                        <span class="message">Your file as been converted, your can download bellow.</span>
+                    <div class="onglet-page" data-onglet="3">
+                        <div class="onglet-content">
+                            <i class="fa-solid fa-file-signature box-icon"></i>
+                            <span class="message">In conversion, please wait.</span>
+                        </div>
                     </div>
-                </form>
+                    <div class="onglet-page" data-onglet="4">
+                        <div class="onglet-content">
+                            <i class="fa-solid fa-file-arrow-down box-icon"></i>
+                            <span class="message">Your file as been converted, your can download bellow.</span>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <input type="checkbox" id="switch-button" onclick="toggleDarkMode()">
                     <label for="switch-button">
@@ -77,15 +108,41 @@
                     <h1 class="title">BlackLaTex</h1>
                     <span class="subtitle">PGN to LaTeX converter.</span>
                 </div>
-                <span class="description">Once uploaded, your file will be converted automatically.</span>
-            </div>
-            <div class="dowl">
                 <div>
-                    <i class="fa-solid fa-file"></i>
-                    <span>exemple.tex</span>
+                    <div class="onglet-page a-onglet-page" data-onglet="1">
+                        <span class="description">Once uploaded, your file will be converted automatically.</span>
+                    </div>
+                    <div class="onglet-page" data-onglet="2">
+                        <span class="description">2Once uploaded, your file will be converted automatically.</span>
+                    </div>
+                    <div class="onglet-page" data-onglet="3">
+                        <span class="description">3Once uploaded, your file will be converted automatically.</span>
+                    </div>
+                    <div class="onglet-page" data-onglet="4">
+                        <span class="description">4Once uploaded, your file will be converted automatically.</span>
+                    </div>
                 </div>
-                <a href="">Downdload</a>
-                <button><i class="fa-regular fa-circle-xmark"></i></button>
+            </div>
+            <div>
+                <div class="onglet-page" data-onglet="1"></div>
+                <div class="onglet-page" data-onglet="2">
+                    <a href="index.html">
+                        <div class="dowl">
+                            <span>Back to main</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="onglet-page" data-onglet="3"></div>
+                <div class="onglet-page" data-onglet="4">
+                    <div class="dowl">
+                        <div>
+                            <i class="fa-solid fa-file"></i>
+                            <span>exemple.tex</span>
+                        </div>
+                        <a href="">Download</a>
+                        <button><i class="fa-regular fa-circle-xmark"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="fl2">
@@ -94,7 +151,8 @@
     </main>
 
     <script src="sources/js/loader.js"></script>
-    <script src="sources/js/index.js"></script>
+    <script src="sources/js/test.js"></script>
+    <!-- <script src="sources/js/index.js"></script> -->
 
 </body>
 </html>

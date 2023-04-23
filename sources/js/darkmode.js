@@ -5,10 +5,12 @@ function toggleDarkMode() {
     var drop = document.querySelector(".drag-image");
     var onglet = document.querySelector(".onglet");
     var fl2 = document.querySelector(".fl2");
+    var btn = document.querySelector(".btn1");
 
     application.classList.toggle("dark-mode");
     box.classList.toggle("dark-mode");
     drop.classList.toggle("dark-mode");
     onglet.classList.toggle("dark-mode");
     fl2.classList.toggle("dark-mode");
+    btn.classList.toggle("dark-mode");
 }

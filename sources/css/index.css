@@ -23,7 +23,7 @@
 }
 
 .fl2{
-    width: 600px;
+    width: 400px;
 
     background-color: #23222b;
 }
@@ -42,8 +42,11 @@
     border-radius: 40px;
 }
 
+.dropzone-from{
+    width: 100%;
+}
+
 .dropzone{
-    aspect-ratio: 16 / 10;
     width: 100%;
 
     margin: auto;
@@ -175,24 +178,74 @@
     border-radius: 5px;
 }
 
-.onglet{
+.onglet-page{
+    width: 100%;
+
+    display: none;
+}
+
+.onglet-content{
     width: 100%;
 
     padding: 20px;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 30px;
 
-    border: 2px solid #dadada;
     border-radius: 20px;
 
     text-align: center;
 }
 
-.message{
-    margin: 30px 0 0 0;
+.onglet-page:first-child{
+    padding: 0;
+}
+
+.a-onglet-page{
+    display: flex;
+}
+
+.onglet-page:nth-child(2) > .onglet-content{
+    background-color: #ff0000;
+}
+
+.onglet-page:nth-child(3) > .onglet-content{
+    background-color: #0077ff;
+}
+
+.onglet-page:nth-child(4) > .onglet-content{
+    background-color: #45d437;
+}
+
+.selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.selection > i{
+    color: #a3a3a3;
+}
+
+.onglet{
+    padding: 5px 10px;
+
+    background-color: transparent;
+
+    border: none;
+
+    font-size: 1em;
+    font-weight: bold;
+    color: #a3a3a3;
+}
+
+.a-onglet{
+    color: #000000;
 }
 
 
@@ -213,6 +266,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.dowl > button {
+    aspect-ratio: 1/1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+
+    border: none;
+    border-radius: 50%;
+
+    font-size: 1.2em;
+
+    cursor: pointer;
 }
 
 
