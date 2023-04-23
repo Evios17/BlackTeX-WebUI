@@ -1,6 +1,7 @@
 #switch-button{
     display:none;
 }
+
 #switch-button ~ label{
     float: right;
     border:2px solid #dadada;
@@ -8,9 +9,11 @@
     padding: 4px 10px;
     cursor:pointer;
 }
+
 #switch-button:checked ~ label{
     border:2px solid #42414d;
 }
+
 .fa-sun{
     color:#ffbe00;
     font-size:18px;
@@ -18,6 +21,7 @@
     transform:translateX(18px);
     transition:.3s;
 }
+
 .fa-moon{
     color:#ffffff;
     font-size:18px;
@@ -26,14 +30,17 @@
     opacity:0;
     transition:.3s;
 }
+
 #switch-button:checked ~ label > .fa-sun{
     opacity:0;
     transform:translateX(0px);
 }
+
 #switch-button:checked ~ label > .fa-moon{
     opacity:1;
     transform:translateX(-18px);
 }
+
 #switch-button:checked ~ .content{
     background:black;
     color:white;

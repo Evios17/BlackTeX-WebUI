@@ -1,5 +1,5 @@
 const ongletBtn = document.querySelectorAll('.onglet');
-const ongletPage = document.querySelectorAll('.onglet-page');
+const ongletLayout = document.querySelectorAll('.onglet-layout');
 let index1 = 0;
 
 let s1 = new Audio("sources/media/song/s1.mp3");
@@ -23,11 +23,11 @@ ongletBtn.forEach(onglet => {
             }
         }
 
-        for(j = 0; j < ongletPage.length; j++) {
-            if(ongletPage[j].getAttribute('data-onglet') == index1){
-                ongletPage[j].classList.add('a-onglet-page');
+        for(j = 0; j < ongletLayout.length; j++) {
+            if(ongletLayout[j].getAttribute('data-onglet') == index1){
+                ongletLayout[j].classList.add('a-onglet-layout');
             }else{
-                ongletPage[j].classList.remove('a-onglet-page');
+                ongletLayout[j].classList.remove('a-onglet-layout');
             }
         }
 
