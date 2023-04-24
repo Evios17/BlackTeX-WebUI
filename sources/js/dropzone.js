@@ -14,7 +14,8 @@ input.addEventListener("change", function(){
 
     file = this.files[0];
     dropArea.classList.add("a-dropzone");
-    //viewfile();
+    
+    input.value = file;
 });
 
 dropArea.addEventListener("dragover", (event)=>{
@@ -38,6 +39,7 @@ dropArea.addEventListener("drop", (event)=>{
 
     file = event.dataTransfer.files[0];
     fileName = event.dataTransfer.files[0].name;
+    input.value = file;
     //viewfile(); 
 
     dragText.classList.add("a-dropzone-output");

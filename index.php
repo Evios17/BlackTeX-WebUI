@@ -52,6 +52,7 @@
             </nav>
             <div class="box">
                 <div class="onglet-container">
+                    <button onclick="test()">Test</button>
                     <div class="onglet-layout a-onglet-layout" data-onglet="1">
                         <div class="onglet-content">
                             <form action="" method="post" enctype="multipart/form-data" class="dropzone-from">
@@ -132,6 +133,19 @@
             </div>
         </div>
         <div class="right">
+        <script>
+            function test () {
+                $.ajax({
+                    method: "POST",
+                    url: "test.php",
+                    data: { action: "charger-donnees" }
+                });
+                $.done(function(data) {
+                    // Affiche les données renvoyées par le script PHP
+                    $("#resultat").html(data);
+                });
+            }
+        </script>
             <?php
                 if(isset($_POST['submit'])){
                     if ($_FILES['dropzone-file']['error']) {
@@ -156,12 +170,41 @@
                         //echo getcwd()."/".$target_nom;
                         if(move_uploaded_file($target_nom, $target_path)){
                             echo "Le fichier que vous avez envoyé a bien était réceptioné !";
+                            $target_nom = substr($target_nom, 5);
+                            // Chemin vers l'exécutable en C
+                            $executable = '/var/www/html/cours/r208/r208-web/blacktex';
+
+                            // Argument à passer au programme
+                            $argument = ' -n 5 -i ' . $target_nom;
+
+                            // Exécute le programme en C avec l'argument
+                            $resultat = exec("$executable $argument", $output, $status);
+
+                            // Affiche le résultat
+                            if ($status == 0) {
+                                echo "Le programme a été exécuté avec succès. Résultat : $resultat";
+                            } else {
+                                echo "L'exécution du programme a rencontré une erreur.";
+                            }
+
+                            // Affiche la sortie du shell
+                            echo "<pre>";
+                            echo implode("\n", $output);
+                            echo "</pre>";
                         } else {
                             echo "Le fichier que vous avez envoyé n'a pas bien était réceptioné !";
                         }
                         
                     }
                 }
+
+                // $output=null;
+                // $retval=null;
+                // exec('blacktex', $output, $retval);
+                // echo "Returned with status $retval and output:\n";
+                // print_r($output);
+
+                
             ?>
         </div>
     </main>

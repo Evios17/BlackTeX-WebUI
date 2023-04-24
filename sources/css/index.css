@@ -301,6 +301,8 @@
     background-color: #23222b;
 
     color: #ffffff;
+
+    overflow: auto;
 }
 
 
