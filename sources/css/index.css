@@ -72,11 +72,23 @@
 .onglet-content{
     width: 100%;
 
+    position: relative;
+
     border-radius: 20px;
 }
 
 .a-onglet-layout{
     display: block;
+
+    animation: 1s sm forwards;
+}
+
+@keyframes sm {
+    from{
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
 }
 
 .box .onglet-container:first-child .onglet-content{
@@ -145,6 +157,8 @@
     align-items: center;
     gap: 25px;
 
+    position: relative;
+
     background-color: transparent;
     box-shadow: 0 0 0 5px #f0f0f4;
 
@@ -186,23 +200,30 @@
     font-weight: bold;
 }
 
-.dropzone-btn{
-    padding: 10px 15px;
-    
-    display: block;
-    
-    background-color: #ffbe00;
-    box-shadow: 0 0 0 5px #ffe38f;
-    border: none;
-    border-radius: 20px;
-
-    font-size: 1em;
-
-    cursor: pointer;
+.dropzone-btn-submit{
+    display: none;
 }
 
-.dropzone-btn:hover{
-    box-shadow: 0 0 0 10px #ffe38f;
+.a-dropzone-btn-submit{
+    display: block;
+}
+
+.dropzone-btn-cancel{
+    display: none;
+    
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.a-dropzone-btn-cancel{
+    display: flex;
+}
+
+.onglet2-btn-cancel{
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .title{
@@ -222,6 +243,34 @@
 
 
 
+
+
+
+
+.lod{
+    width: 200px;
+    height: 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    background: linear-gradient(to left , #f0f0f4, #fff);
+
+    box-shadow: 0 0 0 5px #f9f9fb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.lod > div{
+    width: 60%;
+
+    background: #ffbe00;
+
+    box-shadow: 0 0 30px 0 #ffbe00;
+}
 
 
 .dowl{
@@ -268,44 +317,58 @@
     cursor: pointer;
 }
 
-.btn1{
-    padding: 8px;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    
-    background-color: #ffbe00;
-    border: none;
-    border-radius: 20px;
-
-    font-size: 1em;
-    text-decoration: none;
-    color: #000000;
-
-    cursor: pointer;
-}
-
 
 
 
 .right{
+    width: 0px;
+    
+    padding: 0;
+
+    display: flex;
+
+    position: relative;
+
+    background-color: #fff;
+    box-shadow: 0 0 10px 0#dddddd;
+}
+
+.a-right{
     width: 30%;
+}
 
-    padding: 20px;
+.sl{
+    padding: 10px 10px 10px 5px;
 
-    background-color: #23222b;
+    position: absolute;
+    left: -34px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
 
-    color: #ffffff;
+    background-color: #fff;
+
+    border: none;
+    border-radius: 0 20px 20px 0;
+
+    /* box-shadow: 0 0 10px 0#dddddd; */
+
+    font-size: 1em;
+    writing-mode: vertical-rl;
+
+    cursor: pointer;
+}
+
+.right > div{
+    padding: 0px;
+
+    flex: 1;
 
     overflow: auto;
 }
 
-
+.a-right > div{
+    padding: 35px;
+}
 
 
 /* Dark mode */
@@ -334,6 +397,12 @@
     background-color: transparent;
 }
 
+.a-dropzone.dark-mode{
+    box-shadow: 0 0 0 5px #aed4ff;
+
+    border: 2px dashed #0077ff;
+}
+
 .onglet.dark-mode.a-onglet{
     color: #ffffff;
 }
@@ -348,6 +417,22 @@
     box-shadow: 0 0 0 10px #9d7600;
 }
 
+.lod.dark-mode{
+    background: linear-gradient(to left , #1c1b22, #2b2a33);
+
+    box-shadow: 0 0 0 5px #23222b;
+}
+
 .right.dark-mode{
     background-color: #2b2a33;
+
+    box-shadow: 0 0 10px 0 #23222b;
+
+    color: #a3a3a3;
+}
+
+.right.dark-mode .sl{
+    background-color: #2b2a33;
+
+    color: #fff;
 }

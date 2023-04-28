@@ -45,3 +45,58 @@
     background:black;
     color:white;
 }
+
+
+
+
+.btn1{
+    padding: 8px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #ffbe00;
+    border: none;
+    border-radius: 20px;
+
+    font-size: 1em;
+    text-decoration: none;
+    color: #000000;
+
+    animation: 1.5s spin forwards;
+    cursor: pointer;
+}
+
+.btn1:hover{
+    box-shadow: 0 0 0 5px #ffe38f;
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    } 80% {
+        transform: rotate(450deg);
+    } 100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn2{
+    padding: 10px 15px;
+    
+    display: block;
+    
+    background-color: #ffbe00;
+    box-shadow: 0 0 0 5px #ffe38f;
+    border: none;
+    border-radius: 20px;
+
+    font-size: 1em;
+
+    cursor: pointer;
+}
+
+.btn2:hover{
+    box-shadow: 0 0 0 10px #ffe38f;
+}
