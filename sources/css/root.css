@@ -9,3 +9,20 @@
     scroll-behavior: smooth !important;
     transition: 300ms;
 }
+
+
+:root{
+    /*Color palette*/
+    --color-primary:   #000;
+    --color-secondary:  #3a3a3a;
+    --color-tertiary: 228, 228, 255;
+
+    --color-background-layer1: #fff;
+    --color-background-layer2: #f0f0f4;
+    --color-background-layer3: #dadada;
+
+    --color-shadow: 238, 238, 238;
+    
+    --color-text-black: 0, 0, 0;
+    --color-text-white: 255, 255, 255;
+}

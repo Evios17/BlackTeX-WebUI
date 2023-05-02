@@ -82,6 +82,18 @@ submit.addEventListener("click", (event) => {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", 'test.php', true);
 
+    xhr.upload.addEventListener('progress', function(event) {
+        if (event.lengthComputable) {
+        let progress = Math.round((event.loaded / event.total) * 100);
+        console.log('Upload progress: ' + progress + '%');
+        }
+    }, false);
+
+    // Listen for the upload completion
+    xhr.addEventListener('load', function() {
+        console.log('Upload complete!');
+    }, false);
+
     xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			var result = document.querySelector('.console');

@@ -1,43 +1,46 @@
 const ongletBtn = document.querySelectorAll('.onglet');
 const ongletLayout = document.querySelectorAll('.onglet-layout');
-let index1 = 0;
+
+let index = 0;
 
 let s1 = new Audio("sources/media/song/s1.mp3");
 let s2 = new Audio("sources/media/song/s2.mp3");
 
-
-ongletBtn.forEach(onglet => {
+ongletBtn.forEach(function(onglet){
     onglet.addEventListener('click', () => {
+        ongletSelector(onglet.getAttribute('data-onglet'));
+    })
+})
+
+function ongletSelector(index) {
+    ongletBtn.forEach(function(onglet) {
         if(onglet.classList.contains('a-onglet')){
             return;
-        }else{
+        } else {
             onglet.classList.add('a-onglet');
         }
 
-        index1 = onglet.getAttribute('data-onglet');
-        console.log(index1);
-
         for(i = 0; i < ongletBtn.length; i++) {
-            if(ongletBtn[i].getAttribute('data-onglet') != index1){
+            if(ongletBtn[i].getAttribute('data-onglet') !== index){
                 ongletBtn[i].classList.remove('a-onglet');
             }
         }
 
         for(j = 0; j < ongletLayout.length; j++) {
-            if(ongletLayout[j].getAttribute('data-onglet') == index1){
+            if(ongletLayout[j].getAttribute('data-onglet') == index) {
                 ongletLayout[j].classList.add('a-onglet-layout');
-            }else{
+            } else {
                 ongletLayout[j].classList.remove('a-onglet-layout');
             }
         }
 
-        if(index1 == 2){
+        if(index == 2) {
             s2.play();
-        } else if (index1 == 4){
+        } else if (index == 4) {
             s1.play();
         }
-    })
-})
+    });
+}
 
 
 const dropArea = document.querySelector(".dropzone"),
@@ -45,13 +48,17 @@ const dropArea = document.querySelector(".dropzone"),
       content = document.querySelector(".dropzone-content"),
       button = document.querySelector(".dropzone-btn"),
       submit = document.querySelector(".dropzone-btn-submit"),
-      cancel = document.querySelector(".dropzone-btn-cancel"),
+      link = document.querySelector(".dowl-link"),
+      cancel1 = document.querySelector(".dropzone-btn-cancel"),
+      cancel2 = document.querySelector(".onglet-btn-cancel"),
+      ctn = document.querySelector("#ctn").value,
+      pdf = document.querySelector("#pdf").checked,
+      nag = document.querySelector("#nag").checked,
       input = dropArea.querySelector("input");
 
 let file,
-    fileName;
-
-let step = 0;
+    fileName,
+    fileExtension;
 
 button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -60,47 +67,45 @@ button.addEventListener("click", (event) => {
     input.click();
 })
 
-cancel.addEventListener("click", (event) => {
+cancel1.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
 
+    dropArea.classList.remove("a-dropzone");
     content.classList.remove("a-dropzone-content");
     submit.classList.remove("a-dropzone-btn-submit");
-    cancel.classList.remove("a-dropzone-btn-cancel");
+    cancel1.classList.remove("a-dropzone-btn-cancel");
     dragText.classList.remove("a-dropzone-output");
 })
 
+cancel2.addEventListener("click", () => {
+    location.reload();
+})
+
 input.addEventListener("change", () => {
-    
-    
-    // file = this.files[0];
-    // fileName = this.files[0].name;
     file = input.files[0];
     fileName = input.files[0].name;
+    fileExtension = fileName.split('.').pop();
 
-    handleFiles(file);
+    handleFile(file);
 
+    dropArea.classList.add("a-dropzone");
     content.classList.add("a-dropzone-content");
     submit.classList.add("a-dropzone-btn-submit");
-    cancel.classList.add("a-dropzone-btn-cancel");
+    cancel1.classList.add("a-dropzone-btn-cancel");
     dragText.classList.add("a-dropzone-output");
     dragText.textContent = fileName;
 })
 
 dropArea.addEventListener("dragover", (event) => {
     event.preventDefault();
-    // content.classList.add("a-dropzone-content");
+
     dropArea.classList.add("a-dropzone");
-    // dragText.classList.add("a-dropzone-output");
-    // dragText.textContent = "";
 })
 
 
 dropArea.addEventListener("dragleave", () => {
-    // content.classList.remove("a-dropzone-content");
     dropArea.classList.remove("a-dropzone");
-    // dragText.classList.remove("a-dropzone-output");
-    // dragText.textContent = "";
 });
 
 dropArea.addEventListener("drop", (event) => {
@@ -108,58 +113,61 @@ dropArea.addEventListener("drop", (event) => {
 
     file = event.dataTransfer.files[0];
     fileName = event.dataTransfer.files[0].name;
+    fileExtension = fileName.split('.').pop();
 
-    handleFiles(file);
+    handleFile(file);
 
     content.classList.add("a-dropzone-content");
     submit.classList.add("a-dropzone-btn-submit");
-    cancel.classList.add("a-dropzone-btn-cancel");
+    cancel1.classList.add("a-dropzone-btn-cancel");
     dragText.classList.add("a-dropzone-output");
     dragText.textContent = fileName;
 })
 
-submit.addEventListener("click", (file) => {
-    let fileType = fileName.split('.').pop();;
-    
-    if(fileType === "pgn"){
-        console.log('Le fichier est un PGN !');
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'index.php', true);
-
-        //Envoie les informations du header adaptées avec la requête
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = function() { //Appelle une fonction au changement d'état.
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        // Requête finie, traitement ici.
-            }
-        }
-
-        var obj = new FormData();
-        obj.append('dropzone-file', file);
-
-        xhr.send(obj);
-        console.log(obj);
-        //xhr.send("foo=bar&lorem=ipsum");
-        // xhr.send(new Int8Array());
-        // xhr.send(document);
-    } else {
-        console.log('Le fichier n\'est pas un PGN !');
-
-        steps("2");
-    }
-})
-
-function handleFiles(file) {
-    // file.forEach(fil => {
-        console.log(file);
-    // })
+function handleFile(file) {
+    console.log(file);
 
     dragText.classList.add("a-dropzone-output");
     dragText.textContent = file.name;
 }
 
-function steps(step) {
-    ongletBtn.click();
-}
+submit.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if(fileExtension === "pgn") {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'traitement.php', true);
+
+        xhr.upload.addEventListener('progress', function(event) {
+            if (event.lengthComputable) {
+            let progress = Math.round((event.loaded / event.total) * 100);
+            console.log('Upload progress: ' + progress + '%');
+            }
+        }, false);
+
+        xhr.addEventListener('load', function() {
+            console.log('Upload complete!');
+        }, false);
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var result = document.querySelector('.console');
+                result.innerHTML = xhr.responseText;
+
+                fileName = fileName.replace('.pgn', '.tex')
+                link.href = fileName;
+
+                ongletSelector(4);
+            }
+        }
+
+        var fromdata = new FormData();
+        fromdata.append('dropzone-file', file);
+
+        xhr.send(fromdata + "ctn" + ctn + "pdf" + pdf + "nag" + nag);
+        console.log(fromdata);
+        console.log(ctn, pdf, nag);
+    } else {
+        ongletSelector(2);
+    }
+})

@@ -3,10 +3,16 @@
 }
 
 #switch-button ~ label{
+    width: 50px;
+    height: 30px;
+
+    padding: 4px 5px;
+
     float: right;
+
     border:2px solid #dadada;
     border-radius:30px;
-    padding: 4px 10px;
+    
     cursor:pointer;
 }
 
@@ -16,34 +22,33 @@
 
 .fa-sun{
     color:#ffbe00;
-    font-size:18px;
-    text-shadow:0px 0px 20px #ffbe00;
-    transform:translateX(18px);
+    font-size: 18px;
+    text-shadow: 0px 0px 20px #ffbe00;
+    transform: translateX(18px);
     transition:.3s;
 }
 
 .fa-moon{
-    color:#ffffff;
-    font-size:18px;
-    text-shadow:0px 0px 20px #ffffff;
-    transform:translateX(0px);
-    opacity:0;
-    transition:.3s;
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 0px 0px 20px #ffffff;
+    transform: translateX(0px);
+    opacity: 0;
 }
 
 #switch-button:checked ~ label > .fa-sun{
-    opacity:0;
-    transform:translateX(0px);
+    opacity: 0;
+    transform: translateX(0px);
 }
 
 #switch-button:checked ~ label > .fa-moon{
     opacity:1;
-    transform:translateX(-18px);
+    transform: translateX(-18px);
 }
 
 #switch-button:checked ~ .content{
-    background:black;
-    color:white;
+    background: black;
+    color: white;
 }
 
 
@@ -99,4 +104,76 @@
 
 .btn2:hover{
     box-shadow: 0 0 0 10px #ffe38f;
+}
+
+
+
+
+
+
+
+input[type='checkbox']/*, input[type='radio']*/{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="checkbox"]{
+    width: 50px;
+    padding: 4px 5px;
+
+    background-color: transparent;
+    border:2px solid #dadada;
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+input[type="checkbox"]:before{
+    content: "";
+
+    width: 18px;
+    height: 18px;
+
+    display: block;
+
+    background-color: #000000;
+
+    box-shadow:0px 0px 20px transparent;
+
+    border-radius: 50%;
+
+    transition: 200ms linear;
+}
+
+input[type="checkbox"]:checked:before{
+    transform: translateX(18px);
+
+    background-color: #ffbe00;
+
+    box-shadow:0px 0px 20px #ffbe00;
+}
+
+
+
+
+
+
+
+
+
+/* Dark mode */
+.btn1:hover.dark-mode{
+    box-shadow: 0 0 0 5px #9d7600;
+}
+
+.btn2:hover.dark-mode{
+    box-shadow: 0 0 0 5px #9d7600;
+}
+
+.checkbox1.dark-mode{
+    border: 2px solid #42414d;
+}
+
+.checkbox1.dark-mode::before{
+    background-color: #ffffff;
 }

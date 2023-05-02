@@ -1,5 +1,5 @@
 function toggleDarkMode() {
-    var elements = document.querySelectorAll(".application, .box, .dropzone, .onglet, .right, .btn1, .onglet-content, .lod");
+    var elements = document.querySelectorAll(".application, .box, .dropzone, .onglet, .right, .btn1, .onglet-content, .lod, .btn1, .btn2, .checkbox1");
     
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.toggle("dark-mode");
@@ -8,7 +8,7 @@ function toggleDarkMode() {
 
 // Événement qui surveille les changements de préférences système
 window.matchMedia('(prefers-color-scheme: dark)').addListener(function() {
-    var elements = document.querySelectorAll(".application, .box, .dropzone, .onglet, .right, .btn1, .onglet-content, .lod");
+    var elements = document.querySelectorAll(".application, .box, .dropzone, .onglet, .right, .btn1, .onglet-content, .lod, .btn1, .btn2, .checkbox1");
     // Si le Dark Mode est activé dans les préférences système
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         for (var i = 0; i < elements.length; i++) {

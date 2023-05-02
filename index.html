@@ -13,6 +13,7 @@
     <meta name="description" content="Étudiant en réseaux et télécommunication, ce portfolio résume mon parcours et mes travaux réalisés. N'hésitez pas à y jeter un coup d’œil !">
     
     <!-- Import -->
+    <link rel="shortcut icon" href="sources/media/favicon.webp" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="sources/css/root.css">
@@ -33,120 +34,142 @@
 
     <main class="application">
         <div class="left">
-            <nav class="onglet-box">
-                <button class="onglet a-onglet" data-onglet="1">
-                    <span>Etape 1</span>
-                </button>
-                <i class="fa-solid fa-chevron-right"></i>
-                <button class="onglet" data-onglet="2">
-                    <span>Etape 2</span>
-                </button>
-                <i class="fa-solid fa-chevron-right"></i>
-                <button class="onglet" data-onglet="3">
-                    <span>Etape 3</span>
-                </button>
-                <i class="fa-solid fa-chevron-right"></i>
-                <button class="onglet" data-onglet="4">
-                    <span>Etape 4</span>
-                </button>
-            </nav>
-            <div class="box">
-                <div class="onglet-container">
-                    <div class="onglet-layout a-onglet-layout" data-onglet="1">
-                        <div class="onglet-content">
-                            <!--<input type="hidden" name="MAX_FILE_SIZE" value="1000000000000">-->
-                            <!-- Le champs 'hidden' doit être défini avant le champs 'file'  -->   
-                            <div class="dropzone">
-                                <button class="btn1 dropzone-btn-cancel"><i class="fa-solid fa-rotate-left"></i></button>
-                                <i class="fa-solid fa-file-arrow-up onglet-content-logo"></i>
-                                <span class="dropzone-output"></span>
-                                <div class="dropzone-content">
-                                    <span>Drag and drop file here.</span>
-                                    <span>OR</span>
-                                    <button class="btn2 dropzone-btn">Browse File</button>
+            <div class="container">
+                <nav class="onglet-box">
+                    <button class="onglet a-onglet" data-onglet="1">
+                        <span>Etape 1</span>
+                    </button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <button class="onglet" data-onglet="2">
+                        <span>Etape 2</span>
+                    </button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <button class="onglet" data-onglet="3">
+                        <span>Etape 3</span>
+                    </button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <button class="onglet" data-onglet="4">
+                        <span>Etape 4</span>
+                    </button>
+                </nav>
+                <div class="box">
+                    <div class="onglet-container">
+                        <div class="onglet-layout a-onglet-layout" data-onglet="1">
+                            <div class="onglet-content">
+                                <!--<input type="hidden" name="MAX_FILE_SIZE" value="1000000000000">-->
+                                <!-- Le champs 'hidden' doit être défini avant le champs 'file'  -->   
+                                <div class="dropzone">
+                                    <button class="btn1 dropzone-btn-cancel"><i class="fa-solid fa-rotate-left"></i></button>
+                                    <i class="fa-solid fa-file-arrow-up onglet-content-logo"></i>
+                                    <span class="dropzone-output"></span>
+                                    <div class="dropzone-content">
+                                        <span>Drag and drop a file here.</span>
+                                        <span>OR</span>
+                                        <button class="btn2 dropzone-btn">Browse File</button>
+                                    </div>
+                                    <input type="file" accept=".pgn" name="dropzone-file" id="dropzone-file" class="dropzone-file" hidden>
                                 </div>
-                                <input type="file" accept=".pgn" name="dropzone-file" id="dropzone-file" class="dropzone-file" hidden>
+                            </div>
+                        </div>
+                        <div class="onglet-layout" data-onglet="2">
+                            <div class="onglet-content">
+                                <button class="btn1 onglet-btn-cancel"><i class="fa-solid fa-rotate-left"></i></button>
+                                <i class="fa-solid fa-file-circle-exclamation onglet-content-logo"></i>
+                                <span class="message">Wrong input file.</span>
+                            </div>
+                        </div>
+                        <div class="onglet-layout" data-onglet="3">
+                            <div class="onglet-content">
+                                <i class="fa-solid fa-file-signature onglet-content-logo"></i>
+                                <span class="message">Converting... please wait.</span>
+                            </div>
+                        </div>
+                        <div class="onglet-layout" data-onglet="4">
+                            <div class="onglet-content">
+                                <button class="btn1 onglet-btn-cancel"><i class="fa-solid fa-rotate-left"></i></button>
+                                <i class="fa-solid fa-file-arrow-down onglet-content-logo"></i>
+                                <span class="message">Your file as been converted.</span>
                             </div>
                         </div>
                     </div>
-                    <div class="onglet-layout" data-onglet="2">
-                        <div class="onglet-content">
-                            <button class="btn1 onglet2-btn-cancel"><i class="fa-solid fa-rotate-left"></i></button>
-                            <i class="fa-solid fa-file-circle-exclamation onglet-content-logo"></i>
-                            <span class="message">Wrong file or extension file.</span>
+                    <div>
+                        <input type="checkbox" id="switch-button" onclick="toggleDarkMode()">
+                        <label for="switch-button">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </label>
+                        <h1 class="title">BlackTex</h1>
+                        <span class="subtitle">PGN to LaTeX converter.</span>
+                    </div>
+                    <div class="onglet-container">
+                        <div class="onglet-layout a-onglet-layout" data-onglet="1">
+                            <span class="description">Once uploaded, your file will be automatically converted.</span>
+                        </div>
+                        <div class="onglet-layout" data-onglet="2">
+                            <span class="description">Something failed... It looks like your file isn't valid or the upload failed, try to upload a valid ".pgn" file.</span>
+                        </div>
+                        <div class="onglet-layout" data-onglet="3">
+                            <span class="description">Wait a bit, we're working on it.</span>
+                        </div>
+                        <div class="onglet-layout" data-onglet="4">
+                            <span class="description">You can download your file just below.</span>
                         </div>
                     </div>
-                    <div class="onglet-layout" data-onglet="3">
-                        <div class="onglet-content">
-                            <i class="fa-solid fa-file-signature onglet-content-logo"></i>
-                            <span class="message">In conversion, please wait.</span>
-                        </div>
-                    </div>
-                    <div class="onglet-layout" data-onglet="4">
-                        <div class="onglet-content">
-                            <i class="fa-solid fa-file-arrow-down onglet-content-logo"></i>
-                            <span class="message">Your file as been converted, your can download bellow.</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <input type="checkbox" id="switch-button" onclick="toggleDarkMode()">
-                    <label for="switch-button">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </label>
-                    <h1 class="title">BlackLaTex</h1>
-                    <span class="subtitle">PGN to LaTeX converter.</span>
                 </div>
                 <div class="onglet-container">
                     <div class="onglet-layout a-onglet-layout" data-onglet="1">
-                        <span class="description">Once uploaded, your file will be converted automatically.</span>
+                        <div class="dropzone-table">
+                            <div>Options</div>
+                            <div>Number of counts</div>
+                            <div><input type="number" min="0" max="10" name="ctn" id="ctn" value="4"></div>
+                            <div>Convert to PDF</div>
+                            <div><input type="checkbox" name="pdf" id="pdf" class="checkbox1"></div>
+                            <div>Don't show NAGs</div>
+                            <div><input type="checkbox" name="nag" id="nag" class="checkbox1"></div>
+                        </div>
+                        <button class="btn2 dropzone-btn-submit">Convert</button>
                     </div>
-                    <div class="onglet-layout" data-onglet="2">
-                        <span class="description">2Once uploaded, your file will be converted automatically.</span>
-                    </div>
+                    <div class="onglet-layout" data-onglet="2"></div>
                     <div class="onglet-layout" data-onglet="3">
-                        <span class="description">3Once uploaded, your file will be converted automatically.</span>
+                        <div class="lod">
+                            <div></div>
+                        </div>
                     </div>
                     <div class="onglet-layout" data-onglet="4">
-                        <span class="description">4Once uploaded, your file will be converted automatically.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="onglet-container">
-                <div class="onglet-layout a-onglet-layout" data-onglet="1">
-                    <button class="btn2 dropzone-btn-submit">Convert</button>
-                </div>
-                <div class="onglet-layout" data-onglet="2"></div>
-                <div class="onglet-layout" data-onglet="3">
-                    <div class="lod">
-                        <div></div>
-                    </div>
-                </div>
-                <div class="onglet-layout" data-onglet="4">
-                    <div class="dowl">
-                        <div>
-                            <i class="fa-solid fa-file"></i>
-                            <span>exemple.tex</span>
+                        <div class="dowl">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>File</td>
+                                        <td>Download</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>example.tex</span></td>
+                                        <td><a href="" class="dowl-link"><i class="fa-solid fa-download"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>example.pdf</span></td>
+                                        <td><a href="" class="dowl-link"><i class="fa-solid fa-download"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <a href="" class="dowl-link">Download</a>
-                        <a href="index.html" class="dowl-close"><i class="fa-regular fa-circle-xmark"></i></a href="index.html">
                     </div>
                 </div>
             </div>
         </div>
         <div class="right">
-            <div class="console">
-                
-            </div>
+            <div class="console"></div>
             <button class="sl">Show log</button>
         </div>
     </main>
 
     <script src="sources/js/loader.js"></script>
-    <script src="sources/js/onglet.js"></script>
-    <script src="sources/js/dropzone.js"></script>
-    <!-- <script src="sources/js/index.js"></script> -->
+    <!-- <script src="sources/js/onglet.js"></script> -->
+    <!-- <script src="sources/js/dropzone.js"></script> -->
+    <script src="sources/js/index.js"></script>
     <script src="sources/js/terminal.js"></script>
 </body>
 </html>
