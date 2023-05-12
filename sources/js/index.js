@@ -48,6 +48,7 @@ const dropArea = document.querySelector(".dropzone"),
       content = document.querySelector(".dropzone-content"),
       button = document.querySelector(".dropzone-btn"),
       submit = document.querySelector(".dropzone-btn-submit"),
+      option = document.querySelector(".dropzone-option"),
       link = document.querySelector(".dowl-link"),
       cancel1 = document.querySelector(".dropzone-btn-cancel"),
       cancel2 = document.querySelector(".onglet-btn-cancel"),
@@ -74,6 +75,7 @@ cancel1.addEventListener("click", (event) => {
     dropArea.classList.remove("a-dropzone");
     content.classList.remove("a-dropzone-content");
     submit.classList.remove("a-dropzone-btn-submit");
+    option.classList.remove("a-dropzone-option");
     cancel1.classList.remove("a-dropzone-btn-cancel");
     dragText.classList.remove("a-dropzone-output");
 })
@@ -92,6 +94,7 @@ input.addEventListener("change", () => {
     dropArea.classList.add("a-dropzone");
     content.classList.add("a-dropzone-content");
     submit.classList.add("a-dropzone-btn-submit");
+    option.classList.add("a-dropzone-option");
     cancel1.classList.add("a-dropzone-btn-cancel");
     dragText.classList.add("a-dropzone-output");
     dragText.textContent = fileName;
@@ -119,6 +122,7 @@ dropArea.addEventListener("drop", (event) => {
 
     content.classList.add("a-dropzone-content");
     submit.classList.add("a-dropzone-btn-submit");
+    option.classList.add("a-dropzone-option");
     cancel1.classList.add("a-dropzone-btn-cancel");
     dragText.classList.add("a-dropzone-output");
     dragText.textContent = fileName;
@@ -171,3 +175,31 @@ submit.addEventListener("click", (event) => {
         ongletSelector(2);
     }
 })
+
+if(fileExtension === "pgn") {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'traitement.php', true);
+
+    xhr.upload.addEventListener('progress', function(event) {
+        if (event.lengthComputable) {
+        let progress = Math.round((event.loaded / event.total) * 100);
+        console.log('Upload progress: ' + progress + '%');
+        }
+    }, false);
+
+    xhr.addEventListener('load', function() {
+        console.log('Upload complete!');
+    }, false);
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            var result = document.querySelector('.console');
+            result.innerHTML = xhr.responseText;
+
+            fileName = fileName.replace('.pgn', '.tex')
+            link.href = fileName;
+
+            ongletSelector(4);
+        }
+    }
+}

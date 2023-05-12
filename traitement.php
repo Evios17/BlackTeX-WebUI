@@ -1,4 +1,6 @@
+
 <?php
+// header("Access-Control-Allow-Methods: POST");
     //if(isset($_POST['submit'])){
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_FILES['dropzone-file']['error']) {
@@ -28,7 +30,7 @@
             $target_path = $target_dir . $target_nom;
             //echo getcwd()."/".$target_nom;
             if(move_uploaded_file(/*$target_nom*/$_FILES['dropzone-file']["tmp_name"], $target_path)){
-                echo "Le fichier que vous avez envoyé a bien était réceptioné !";
+                echo "Le fichier que vous avez envoyé a bien était réceptionné !";
                 ///$target_nom = substr($target_nom, 5);
                 // Chemin vers l'exécutable en C
                 $executable = '/var/www/html/cours/r208/r208-web/blacktex';
@@ -72,7 +74,7 @@
                 echo implode("\n", $output);
                 echo "</pre>";
             } else {
-                echo "Le fichier que vous avez envoyé n'a pas bien était réceptioné !";
+                echo "Le fichier que vous avez envoyé n'a pas bien était réceptionné !";
             }
             
         }

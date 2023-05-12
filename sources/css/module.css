@@ -87,6 +87,12 @@
     }
 }
 
+/* Darkmode */
+
+.application.dark-mode .btn1:hover{
+    box-shadow: 0 0 0 5px #9d7600;
+}
+
 .btn2{
     padding: 10px 15px;
     
@@ -102,8 +108,18 @@
     cursor: pointer;
 }
 
+/* Darkmode */ 
+
 .btn2:hover{
     box-shadow: 0 0 0 10px #ffe38f;
+}
+
+.application.dark-mode .btn2{
+    box-shadow: 0 0 0 5px #9d7600;
+}
+
+.application.dark-mode .btn2:hover{
+    box-shadow: 0 0 0 10px #9d7600;
 }
 
 
@@ -150,30 +166,25 @@ input[type="checkbox"]:checked:before{
 
     background-color: #ffbe00;
 
-    box-shadow:0px 0px 20px #ffbe00;
+    box-shadow: 0px 0px 20px #ffbe00;
 }
 
+/* Darkmode */
 
-
-
-
-
-
-
-
-/* Dark mode */
-.btn1:hover.dark-mode{
-    box-shadow: 0 0 0 5px #9d7600;
-}
-
-.btn2:hover.dark-mode{
-    box-shadow: 0 0 0 5px #9d7600;
-}
-
-.checkbox1.dark-mode{
-    border: 2px solid #42414d;
-}
-
-.checkbox1.dark-mode::before{
+.application.dark-mode input[type="checkbox"]:before{
     background-color: #ffffff;
+
+    box-shadow: 0px 0px 20px #ffffff;
+}
+
+.application.dark-mode input[type="checkbox"]:checked:before{
+    transform: translateX(18px);
+
+    background-color: #ffbe00;
+
+    box-shadow: 0px 0px 20px #ffbe00;
+}
+
+.application.dark-mode input[type="checkbox"]{
+    border: 2px solid #42414d;
 }
