@@ -179,7 +179,30 @@
 
     }
 
+    if (!$pdf) {
 
+        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+        $uri = $parsed_url['path'];
+
+        $info['status'] = "COMPLETE";
+        $info['created'] = time();
+
+        if (file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT)) === false) // Notifier dans les logs ?
+
+        $return['status'] = "OK";
+        $return['message'] = "Your file has been converted to LaTeX.";
+        $return['content'] = [
+
+            "links" => [
+
+                "tex" => $_SERVER['SERVER_NAME'].$uri.'/data/'.$tmpname.'/output.tex',
+                "pdf" => false
+
+            ]
+
+        ];
+
+    }
 
     $return['status'] = "END";
     $return['message'] = "FIN DU SCRIPT";
