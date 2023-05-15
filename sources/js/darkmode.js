@@ -18,6 +18,3 @@ function detectColorScheme() {
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     detectColorScheme();
 });
-
-// Appel initial de la fonction detectColorScheme
-detectColorScheme();
