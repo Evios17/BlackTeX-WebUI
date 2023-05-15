@@ -4,15 +4,20 @@ function toggleDarkMode() {
     elements.classList.toggle("dark-mode");
 }
 
-// Événement qui surveille les changements de préférences système
-window.matchMedia('(prefers-color-scheme: dark)').addListener(function() {
-    var elements = document.querySelector(".application");
-    
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        
-        elements.classList.add("dark-mode");
-    // Si le Dark Mode est désactivé dans les préférences système, mais que l'utilisateur l'a activé manuellement
+// Fonction qui détecte si le mode sombre est activé dans les préférences système
+function detectColorScheme() {
+    console.log('detectColorScheme() called');
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector(".application").classList.add("dark-mode");
     } else {
-        elements[i].classList.remove("dark-mode");
+        document.querySelector(".application").classList.remove("dark-mode");
     }
+}
+
+// Événement qui surveille les changements de préférences système
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    detectColorScheme();
 });
+
+// Appel initial de la fonction detectColorScheme
+detectColorScheme();
