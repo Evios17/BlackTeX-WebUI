@@ -232,14 +232,14 @@
     gap: 30px;
 
     background-color: #ffffff;
-    box-shadow: 0 0 0 5px #f9f9fb;
-    border-radius: 40px;
-
-    text-align: center;
+    border: 2px solid #dadada;
+    border-radius: 20px;
 }
 
 .a-dropzone-option{
     display: flex;
+
+    animation: 2s sm forwards;
 }
 
 .dropzone-option > span {
@@ -333,32 +333,42 @@
 }
 
 
+
 .dowl{
+    width: 100%;
+
     padding: 20px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    border: 2px solid #dadada;
+    border-radius: 20px;
+}
+
+.dowl div{
+    padding: 5px 15px;
+}
+
+.dowl div:nth-child(1), .dowl div:nth-child(2){
+    margin: 0 0 10px 0;
+    padding: 10px 15px;
 
     background-color: #ffbe00;
 
-    border-radius: 30px;
+    color: #000000;
 }
 
-.dowl table{
-    border-collapse: collapse;
+.dowl div:nth-child(1){
+    border-radius: 20px 0 0 20px;
+}
 
+.dowl div:nth-child(2){
+    border-radius: 0 20px 20px 0;
+}
+
+.dowl div:nth-child(even){
     text-align: center;
-}
-
-.dowl td{
-    padding: 5px;
-
-    border: 1px solid #000;
-}
-
-.dowl thead{
-    padding: 5px;
 }
 
 .dowl a{
@@ -486,7 +496,7 @@
 .application.dark-mode .dropzone-option{
     background-color: #2b2a33;
     
-    box-shadow: 0 0 0 5px #23222b;
+    border: 2px solid #42414d;
 
     color : #fff;
 }
@@ -499,6 +509,14 @@
     background: linear-gradient(to left , #1c1b22, #2b2a33);
 
     box-shadow: 0 0 0 5px #23222b;
+}
+
+.application.dark-mode .dowl{
+    border: 2px solid #42414d;
+}
+
+.application.dark-mode .dowl a{
+    color: #fff;
 }
 
 .application.dark-mode .right{
