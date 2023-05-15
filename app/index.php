@@ -128,7 +128,8 @@
 
     ];
 
-    if (file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT)) === false) // Notifier dans les logs ?
+    file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
+    fclose(fopen('data/'.$tmp_name.'/info.json', 'a'));
 
     // Tentation de déplacement du fichier
     if (!move_uploaded_file($_FILES['dropzone-file']['tmp_name'], $input)) {
@@ -187,7 +188,8 @@
         $info['status'] = "COMPLETE";
         $info['created'] = time();
 
-        if (file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT)) === false) // Notifier dans les logs ?
+        file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
+        fclose(fopen('data/'.$tmp_name.'/info.json', 'a'));
 
         $return['status'] = "OK";
         $return['message'] = "Your file has been converted to LaTeX.";
@@ -202,7 +204,12 @@
 
         ];
 
+        echo json_encode($return, JSON_PRETTY_PRINT);
+        exit();
+
     }
+
+
 
     $return['status'] = "END";
     $return['message'] = "FIN DU SCRIPT";
