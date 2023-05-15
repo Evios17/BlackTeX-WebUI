@@ -139,67 +139,63 @@ submit.addEventListener("click", (event) => {
     event.preventDefault();
 
     if(fileExtension === "pgn") {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'traitement.php', true);
-
-        xhr.upload.addEventListener('progress', function(event) {
-            if (event.lengthComputable) {
-            let progress = Math.round((event.loaded / event.total) * 100);
-            console.log('Upload progress: ' + progress + '%');
-            }
-        }, false);
-
-        xhr.addEventListener('load', function() {
-            console.log('Upload complete!');
-        }, false);
-
-        xhr.onreadystatechange = function() {
-            if(xhr.readyState == 4 && xhr.status == 200) {
-                var result = document.querySelector('.console');
-                result.innerHTML = xhr.responseText;
-
-                fileName = fileName.replace('.pgn', '.tex')
-                link.href = fileName;
-
-                ongletSelector(4);
-            }
-        }
 
         var fromdata = new FormData();
         fromdata.append('dropzone-file', file);
 
-        xhr.send(fromdata + "ctn" + ctn + "pdf" + pdf + "nag" + nag);
-        console.log(fromdata);
-        console.log(ctn, pdf, nag);
+        var myInit = { method: 'POST',
+                    body: formdata };
+
+        fetch("app/index.php", myInit)
+            .then(function(response) {
+                var contentType = response.headers.get("Content-Type");
+
+                if(contentType && contentType.indexOf("application/json") !== -1) {
+                    return response.json().then(function(json) {
+                    // traitement du JSON
+                        console.log(response);
+                    });
+                } else {
+                    console.log("Oops, nous n'avons pas du JSON!");
+                }
+        });
+
+        
+        
+        
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("POST", 'traitement.php', true);
+
+        // xhr.upload.addEventListener('progress', function(event) {
+        //     if (event.lengthComputable) {
+        //     let progress = Math.round((event.loaded / event.total) * 100);
+        //     console.log('Upload progress: ' + progress + '%');
+        //     }
+        // }, false);
+
+        // xhr.addEventListener('load', function() {
+        //     console.log('Upload complete!');
+        // }, false);
+
+        // xhr.onreadystatechange = function() {
+        //     if(xhr.readyState == 4 && xhr.status == 200) {
+        //         var result = document.querySelector('.console');
+        //         result.innerHTML = xhr.responseText;
+
+        //         fileName = fileName.replace('.pgn', '.tex')
+        //         link.href = fileName;
+
+        //         ongletSelector(4);
+        //     }
+        // }
+
+        // var fromdata = new FormData();
+        // fromdata.append('dropzone-file', file);
+
+        // xhr.send(fromdata + "ctn" + ctn + "pdf" + pdf + "nag" + nag);
+        // console.log(fromdata);
+        // console.log(ctn, pdf, nag);
     } else {
         ongletSelector(2);
     }
 })
-
-if(fileExtension === "pgn") {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'traitement.php', true);
-
-    xhr.upload.addEventListener('progress', function(event) {
-        if (event.lengthComputable) {
-        let progress = Math.round((event.loaded / event.total) * 100);
-        console.log('Upload progress: ' + progress + '%');
-        }
-    }, false);
-
-    xhr.addEventListener('load', function() {
-        console.log('Upload complete!');
-    }, false);
-
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            var result = document.querySelector('.console');
-            result.innerHTML = xhr.responseText;
-
-            fileName = fileName.replace('.pgn', '.tex')
-            link.href = fileName;
-
-            ongletSelector(4);
-        }
-    }
-}
