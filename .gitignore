@@ -1,4 +1,6 @@
 .vscode
 
 app/exe/*
+!app/exe/.gitkeep
 app/data/*
+!app/data/.gitkeep
