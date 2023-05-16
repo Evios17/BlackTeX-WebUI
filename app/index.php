@@ -4,14 +4,14 @@
     define('INCLUDED', true);
 
     // Validate file path before including timerchk.php
-    $timerchk_path = realpath(__DIR__ . '/timerchk.php');
-    if ($timerchk_path === false || !is_readable($timerchk_path)) {
-        die('timerchk.php file not found or not readable');
-    }
-    include($timerchk_path);
+    require('timerchk.php');
     
     // Définition du type de contenu sur JSON
     header("Content-Type: application/json");
+
+    // URL pour le client si succès
+    $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+    $uri = htmlspecialchars($parsed_url['path'], ENT_QUOTES, 'UTF-8');
 
     // Array qui contiendra la structure de la réponse en JSON
     $return = [
@@ -48,20 +48,12 @@
 
         // Validate file path before including convert.php
         case "convert" :
-            $convert_path = realpath(__DIR__ . '/convert.php');
-            if ($convert_path === false || !is_readable($convert_path)) {
-                die('convert.php file not found or not readable');
-            }
-            include($convert_path);
+            require('convert.php');
             break;
         
         // Validate file path before including pdfproc.php
         case "pdfcheck" :
-            $pdfproc_path = realpath(__DIR__ . '/pdfproc.php');
-            if ($pdfproc_path === false || !is_readable($pdfproc_path)) {
-                die('pdfproc.php file not found or not readable');
-            }
-            include($pdfproc_path);
+            require('pdfcheck.php');
             break;
 
         // Si le type renseigné ne correspond à aucune méthode listé ci-dessus    

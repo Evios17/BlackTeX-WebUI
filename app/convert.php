@@ -103,8 +103,9 @@
 
     if (isset($_POST['counts'])) {
 
-        if (!is_integer($_POST['counts'] || $_POST['counts'] <= 0)) $invalid = true;
-        $counts = $_POST['counts'];
+        $counts = intval($_POST['counts']);
+        
+        if ($counts <= 0) $invalid = true;
 
     }
 
@@ -211,9 +212,6 @@
 
     // Si l'option de conversion en PDF n'a pas été sélectionné, donner le lien vers le fichier TeX et finir l'exécution du script
     if (!$pdf) {
-
-        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-        $uri = htmlspecialchars($parsed_url['path'], ENT_QUOTES, 'UTF-8');
 
         // Misee à jour du fichier témoin
         $info['status'] = "COMPLETE";
