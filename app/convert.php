@@ -1,6 +1,6 @@
 <?php
 
-    // Si on accède à au script via url
+    // Si on accède au script via url
     if (!defined('INCLUDED')) {
 
         header('HTTP/1.1 403 Forbidden');
@@ -9,20 +9,20 @@
 
     }
 
-    /// ÉTAPE 1 -  Vérification des options de requête de base (méthode, fichier présent)
+    // ÉTAPE 1 -  Vérification des options de requête de base (méthode, fichier présent)
 
     // Si le fichier "dropzone-file" n'existe pas
     if (!isset($_FILES['dropzone-file'])) {
 
         $return['status'] = "ERROR";
-        $return['message'] = "File missing";
+        $return['message'] = "File is missing";
 
         echo json_encode($return, JSON_PRETTY_PRINT);
         die();
 
     }
 
-    // Si il y a une erreur avec le fichier
+    // S'il y a une erreur avec le fichier
     if ($_FILES['dropzone-file']['error']) {
 
         switch ($_FILES['dropzone-file']['error']){
@@ -63,22 +63,47 @@
     // Remplacement des valeurs si définit
     if (isset($_POST['pdf'])) {
 
-        // Tester si le contenu correspond au même type de variable
-        if (!is_bool($_POST['pdf'])) $invalid = true;
-        $pdf = $_POST['pdf'];
+        switch ($_POST['pdf']) {
+
+            case 1 :
+            case "true" :
+                $pdf = true;
+                break;
+            case 0 :
+            case "false" :
+                $pdf = false;
+                break;
+            default :
+                $invalid = true;
+                break;
+
+        }
 
     }
 
     if (isset($_POST['nonags'])) {
 
-        if (!is_bool($_POST['nonags'])) $invalid = true;
-        $nonags = $_POST['nonags'];
+        switch ($_POST['nonags']) {
+
+            case 1 :
+            case "true" :
+                $nonags = true;
+                break;
+            case 0 :
+            case "false" :
+                $nonags = false;
+                break;
+            default :
+                $invalid = true;
+                break;
+
+        }
 
     }
 
     if (isset($_POST['counts'])) {
 
-        if (!is_integer($_POST['counts'])) $invalid = true;
+        if (!is_integer($_POST['counts'] || $_POST['counts'] <= 0)) $invalid = true;
         $counts = $_POST['counts'];
 
     }
@@ -111,7 +136,7 @@
     $output = __DIR__.'/data/'.$tmp_name.'/output.tex';                         // Chemin vers l'ouput
 
     // Création du dossier temporaire
-    if (!mkdir("data/".$tmp_name."/")) {
+    if (!mkdir(__DIR__.'/data/'.$tmp_name.'/')) {
 
         $return['status'] = "ERROR";
         $return['message'] = "An error happened while trying create the processing folder.";
@@ -126,13 +151,14 @@
     $info = [
 
         "status" => "IMCOMPLETE",
+        "pdf" => null,
         "created" => time()
 
     ];
 
     // On place le fichier témoin dans le dossier de traitement
-    file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
-    fclose(fopen('data/'.$tmp_name.'/info.json', 'a'));
+    file_put_contents(__DIR__.'/data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
+    //fclose(fopen(__DIR__.'/data/'.$tmp_name.'/info.json', 'a'));
 
     // Tentation de déplacement du fichier
     if (!move_uploaded_file($_FILES['dropzone-file']['tmp_name'], $input)) {
@@ -140,17 +166,15 @@
         $return['status'] = "ERROR";
         $return['message'] = "An error happened while trying to move the file to the processing folder.";
 
-        
-
         echo json_encode($return, JSON_PRETTY_PRINT);
         die();
 
     }
 
-    /// ÉTAPE 3 - Convertion du fichier PGN
+    /// ÉTAPE 3 - Conversion du fichier PGN
 
-    // Tentation de convertion PGN vers LaTeX
-    if (!exec(__DIR__. '/exe/blacktex --input ' . $input . ' --output ' . $output . ' --counts ' . $counts . ' '. $nonags, $cmdoutput, $rvalue)) {
+    // Tentation de conversion de PGN vers LaTeX
+    if (!exec(__DIR__. '/exe/blacktex --input ' . $input . ' --output ' . $output . ' --counts ' . $counts . ' ' . $nonags, $cmdoutput, $rvalue)) {
 
         $return['status'] = "ERROR";
         $return['message'] = "An error happened while trying to convert the PGN file.";
@@ -185,17 +209,18 @@
 
     }
 
-    // Si l'option de convertion en PDF n'a pas été sélectionné, donner le lien vers le fichier TeX et finir l'exécution du script
+    // Si l'option de conversion en PDF n'a pas été sélectionné, donner le lien vers le fichier TeX et finir l'exécution du script
     if (!$pdf) {
 
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-        $uri = $parsed_url['path'];
+        $uri = htmlspecialchars($parsed_url['path'], ENT_QUOTES, 'UTF-8');
 
+        // Misee à jour du fichier témoin
         $info['status'] = "COMPLETE";
         $info['created'] = time();
 
-        file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
-        fclose(fopen('data/'.$tmp_name.'/info.json', 'a'));
+        file_put_contents(__DIR__.'/data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
+        //fclose(fopen(__DIR__.'/data/'.$tmp_name.'/info.json', 'a'));
 
         $return['status'] = "SUCCESS";
         $return['message'] = "Your file has been successfully converted to LaTeX.";
@@ -215,12 +240,54 @@
 
     }
 
+    // On continue si l'option de conversion en PDF a été sélectionné
     
+    /// Partie compliquée, on créé un processus parallèle qui convertira le fichier TeX en PDF
+    /// Le processus prend du temps, on doit donc le placer dans un processus parallèle.
+    /// Le client fetchera l'api avec type "pdfcheck" pour voir l'avancée de la conversion
 
-    // À supprimer
-    $return['status'] = "END";
-    $return['message'] = "FIN DU SCRIPT";
+    $descriptorspec = array(
 
-    echo json_encode($return, JSON_PRETTY_PRINT);
+        0 => array('pipe', "r"),
+        1 => array('pipe', 'w')
+
+    );
+
+    $process = proc_open('xelatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/output.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
+
+    // Si le procéssus n'a pas été créé
+    if (!$process) {
+
+        $return['status'] = "ERROR";
+        $return['message'] = "An error happened while trying to convert the TeX file to PDF.";
+
+        echo json_encode($return, JSON_PRETTY_PRINT);
+        die();
+
+    }
+
+    // Mis à jour du fichier témoin
+    $info['status'] = "IMCOMPLETE";
+    $info['created'] = time();
+
+    // Écriture
+    file_put_contents(__DIR__ . '/data/' . $tmp_name . '/info.json', json_encode($info, JSON_PRETTY_PRINT));
+
+    // On envoie au client le chemin vers le fichier tex ainsi que l'id du processus pour la convertion pdf
+    $return['status'] = "SUCCESS";
+    $return['message'] = "The TeX file has been created, PDF is on the way.";
+    $return['content'] = [
+
+        "links" => [
+
+            "tex" => $uri . 'data/' . $tmp_name . '/output.tex',
+            "pdf" => $tmp_name
+
+        ]
+
+    ];
+
+    echo json_encode($return, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    exit();
 
 ?>

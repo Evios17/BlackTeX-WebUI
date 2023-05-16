@@ -2,7 +2,13 @@
 
     // Constante pour protéger l'accès des autres scripts
     define('INCLUDED', true);
-    include("timerchk.php");
+
+    // Validate file path before including timerchk.php
+    $timerchk_path = realpath(__DIR__ . '/timerchk.php');
+    if ($timerchk_path === false || !is_readable($timerchk_path)) {
+        die('timerchk.php file not found or not readable');
+    }
+    include($timerchk_path);
     
     // Définition du type de contenu sur JSON
     header("Content-Type: application/json");
@@ -17,7 +23,7 @@
     ];
 
     // Si la méthode n'est pas la méthode POST
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
         $return["status"] = "ERROR";
         $return["message"] = "Wrong request method given.";
@@ -40,17 +46,25 @@
 
     switch ($_POST['type']) {
 
-        // Convertir un fichier
+        // Validate file path before including convert.php
         case "convert" :
-            include("main.php");
+            $convert_path = realpath(__DIR__ . '/convert.php');
+            if ($convert_path === false || !is_readable($convert_path)) {
+                die('convert.php file not found or not readable');
+            }
+            include($convert_path);
             break;
         
-        // Status d'une convertion en PDF
+        // Validate file path before including pdfproc.php
         case "pdfcheck" :
-            include("pdfproc.php");
+            $pdfproc_path = realpath(__DIR__ . '/pdfproc.php');
+            if ($pdfproc_path === false || !is_readable($pdfproc_path)) {
+                die('pdfproc.php file not found or not readable');
+            }
+            include($pdfproc_path);
             break;
 
-        // Si ke type renseigné ne correspond à aucune méthode listé ci-dessus    
+        // Si le type renseigné ne correspond à aucune méthode listé ci-dessus    
         default :
             $return["status"] = "ERROR";
             $return["message"] = "Wront API request type given.";
