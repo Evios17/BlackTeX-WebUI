@@ -1,4 +1,4 @@
 .vscode
 
-app/data
-app/exe
+app/exe/*
+app/data/*

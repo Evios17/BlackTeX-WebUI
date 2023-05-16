@@ -1,7 +1,12 @@
 <?php
 
+    define('INCLUDED', true);
+    include("timerchk.php");
+
+    // Définition du type de contenu sur JSON
     header("Content-Type: application/json");
 
+    // Array qui contiendra la structure de la réponse en JSON
     $return = [
 
         "status" => "",
@@ -9,6 +14,8 @@
         "content" => []
 
     ];
+
+    /// ÉTAPE 1 -  Vérification des options de requête de base (méthode, fichier présent)
 
     // Si la méthode n'est pas la méthode POST
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -32,7 +39,6 @@
         die();
 
     }
-
 
     // Si il y a une erreur avec le fichier
     if ($_FILES['dropzone-file']['error']) {
@@ -60,18 +66,22 @@
 
     }
 
+    /// À PARTIR D'ICI, LES PRÉ-REQUIS DE BASE DE LA REQUÊTE SONT VALIDÉS
 
-    /// À PARTIR D'ICI, TOUTES LES CONDITIONS DE BASE SONT REMPLIES, ON TENTE DE DÉPLACER ET CONVERTIR LE FICHIER
-
+    // Initiation des variables d'arguments
     $invalid = false;
     $pdf = false;
     $nonags = false;
     $counts = 4;
     $nonags = "";
 
+    /// Tester la présence de chaque variable (pas dérangeante si non présent) ; si présente, utiliser la valeure contenu dans la variable
+    /// On teste aussi si le contenu de la variable est valide pour éviter les injections lors de l'appel des commandes système
+
     // Remplacement des valeurs si définit
     if (isset($_POST['pdf'])) {
 
+        // Tester si le contenu correspond au même type de variable
         if (!is_bool($_POST['pdf'])) $invalid = true;
         $pdf = $_POST['pdf'];
 
@@ -91,23 +101,32 @@
 
     }
 
+    // Si l'une des variables a un contenu non-valide, ne pas continuer
     if ($invalid) {
 
         $return['status'] = "ERROR";
-        $return['message'] = "Invalid parameters given.";
+        $return['message'] = "One or more parameter is invalid.";
 
         echo json_encode($return, JSON_PRETTY_PRINT);
         die();
 
     }
 
+    // Si $nonags == true, alors définir l'option --no-nags
     if ($nonags) $nonags = "--no-nags";
 
+    /// ÉTAPE 2 - Création du dossier de traitement et déplacement du fichier
+
     // Noms des fichiers
-    $tmp_name = uniqid();
-    $final_name = $_FILES['dropzone-file']['name'];
-    $input = __DIR__.'/data/'.$tmp_name.'/input.pgn';
-    $output = __DIR__.'/data/'.$tmp_name.'/output.tex';
+
+    do {
+
+        $tmp_name = uniqid();                                                   // Génération d'un nom du fichier temporaire à placer dans data/
+
+    } while (file_exists(__DIR__.'/data/'.$tmp_name.'/'));                      // Si le nom de dossier existe déjà
+
+    $input = __DIR__.'/data/'.$tmp_name.'/input.pgn';                           // Chemin vers l'input
+    $output = __DIR__.'/data/'.$tmp_name.'/output.tex';                         // Chemin vers l'ouput
 
     // Création du dossier temporaire
     if (!mkdir("data/".$tmp_name."/")) {
@@ -120,7 +139,8 @@
 
     }
 
-    // Json du fichier témoin
+    /// On créer un "fichier témoin" pour logger la date de création du traitement, qui sera utilisé plus tard pour supprimer le dossier si le temps est dépassé
+    // Array JSON du fichier témoin
     $info = [
 
         "status" => "IMCOMPLETE",
@@ -128,6 +148,7 @@
 
     ];
 
+    // On place le fichier témoin dans le dossier de traitement
     file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
     fclose(fopen('data/'.$tmp_name.'/info.json', 'a'));
 
@@ -143,6 +164,8 @@
         die();
 
     }
+
+    /// ÉTAPE 3 - Convertion du fichier PGN
 
     // Tentation de convertion PGN vers LaTeX
     if (!exec(__DIR__. '/exe/blacktex --input ' . $input . ' --output ' . $output . ' --counts ' . $counts . ' '. $nonags, $cmdoutput, $rvalue)) {
@@ -180,6 +203,7 @@
 
     }
 
+    // Si l'option de convertion en PDF n'a pas été sélectionné, donner le lien vers le fichier TeX et finir l'exécution du script
     if (!$pdf) {
 
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
@@ -191,8 +215,8 @@
         file_put_contents('data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
         fclose(fopen('data/'.$tmp_name.'/info.json', 'a'));
 
-        $return['status'] = "OK";
-        $return['message'] = "Your file has been converted to LaTeX.";
+        $return['status'] = "SUCCESS";
+        $return['message'] = "Your file has been successfully converted to LaTeX.";
         $return['content'] = [
 
             "links" => [
@@ -209,8 +233,9 @@
 
     }
 
+    
 
-
+    // À supprimer
     $return['status'] = "END";
     $return['message'] = "FIN DU SCRIPT";
 
