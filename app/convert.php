@@ -148,6 +148,8 @@
     $input = __DIR__.'/data/'.$tmp_name.'/input.pgn';                           // Chemin vers l'input
     $output = __DIR__.'/data/'.$tmp_name.'/output.tex';                         // Chemin vers l'ouput
 
+    $name = basename($_FILES['dropzone-file']['name'], ".pgn");                 // Nom de fichier sans l'extension
+
     // Création du dossier temporaire
     if (!mkdir(__DIR__.'/data/'.$tmp_name.'/')) {
 
@@ -165,6 +167,7 @@
 
         "status" => "IMCOMPLETE",
         "pdf" => null,
+        "name" => $name,
         "created" => time()
 
     ];
@@ -225,12 +228,13 @@
     // Si l'option de conversion en PDF n'a pas été sélectionné, donner le lien vers le fichier TeX et finir l'exécution du script
     if (!$pdf) {
 
+        rename(__DIR__ . '/data/' . $tmp_name . '/output.tex', __DIR__ . '/data/' . $tmp_name . '/' . $name . '.tex');
+
         // Misee à jour du fichier témoin
         $info['status'] = "COMPLETE";
         $info['created'] = time();
 
         file_put_contents(__DIR__.'/data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
-        //fclose(fopen(__DIR__.'/data/'.$tmp_name.'/info.json', 'a'));
 
         $return['status'] = "SUCCESS";
         $return['message'] = "Your file has been successfully converted to LaTeX.";
@@ -238,7 +242,7 @@
 
             "links" => [
 
-                "tex" => $uri.'data/'.$tmp_name.'/output.tex',
+                "tex" => $uri . 'data/' . $tmp_name . '/' . $name . '.tex',
                 "pdf" => false
 
             ]
@@ -280,6 +284,8 @@
 
     }
 
+    rename(__DIR__ . '/data/' . $tmp_name . '/output.tex', __DIR__ . '/data/' . $tmp_name . '/' . $name . '.tex');
+
     // Mis à jour du fichier témoin
     $info['status'] = "IMCOMPLETE";
     $info['created'] = time();
@@ -294,7 +300,7 @@
 
         "links" => [
 
-            "tex" => $uri . 'data/' . $tmp_name . '/output.tex',
+            "tex" => $uri . 'data/' . $tmp_name . '/' . $name . '.tex',
             "pdf" => $tmp_name
 
         ]

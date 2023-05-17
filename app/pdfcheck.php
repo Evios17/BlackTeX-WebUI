@@ -42,6 +42,10 @@
 
     }
 
+    //$inforaw = file_get_contents(__DIR__ . '/data/' . $_POST['id'] . '/info.json');
+
+    //$info = json_decode($inforaw, true);
+
     // Récupération du fichier input pour compter le nombre de ligne du fichier TeX
     $inputfile = file(__DIR__ . '/data/' . $_POST['id'] . '/output.tex');
 
@@ -92,14 +96,21 @@
     // Si on a trouvé le mot "Transcript" dans l'une des dernières lignes, la convertion a été effectuée.
     if ($end) {
 
+        //rename(__DIR__ . '/data/' . $_POST['id'] . '/output.pdf', __DIR__ . '/data/' . $_POST['id'] . '/' . $name . '.pdf');
+
+        $info['status'] = "COMPLETE";
+        $info['created'] = time();
+
+        file_put_contents(__DIR__ . '/data/' . $_POST['id'] . '/info.json');
+
         $return['status'] = "SUCCESS";
         $return['message'] = "The PDF has been successfully converted.";
         $return['content'] = [
     
             "links" => [
     
-                "tex" => $uri . 'data/' . $_POST['id'] . '/output.tex',
-                "pdf" => $uri . 'data/' . $_POST['id'] . '/output.pdf'
+                "tex" => $uri . 'data/' . $_POST['id'] . '/' . $info['name'] . '.tex',
+                "pdf" => $uri . 'data/' . $_POST['id'] . '/' . $info['name'] . '.pdf'
     
             ]
     
