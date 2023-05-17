@@ -9,8 +9,11 @@ function detectColorScheme() {
     console.log('detectColorScheme() called');
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.querySelector(".application").classList.add("dark-mode");
+        document.getElementById("switch-button").checked = true;
+
     } else {
         document.querySelector(".application").classList.remove("dark-mode");
+        document.getElementById("switch-button").checked = false;
     }
 }
 

@@ -35,7 +35,7 @@
     <main class="application">
         <div class="left">
             <div class="container">
-                <nav class="onglet-box">
+                <!-- <nav class="onglet-box">
                     <button class="onglet a-onglet" data-onglet="1">
                         <span>Etape 1</span>
                     </button>
@@ -50,6 +50,19 @@
                     <i class="fa-solid fa-chevron-right"></i>
                     <button class="onglet" data-onglet="4">
                         <span>Etape 4</span>
+                    </button>
+                </nav> -->
+                <nav class="onglet-box">
+                    <button class="onglet a-onglet" data-onglet="1">
+                        <span>Etape 1</span>
+                    </button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <button class="onglet" data-onglet="2">
+                        <span>Etape 2</span>
+                    </button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <button class="onglet" data-onglet="3">
+                        <span>Etape 3</span>
                     </button>
                 </nav>
                 <div class="box">
@@ -75,7 +88,7 @@
                             <div class="onglet-content">
                                 <button class="btn1 onglet-btn-cancel"><i class="fa-solid fa-rotate-left"></i></button>
                                 <i class="fa-solid fa-file-circle-exclamation onglet-content-logo"></i>
-                                <span class="message">Wrong input file.</span>
+                                <span class="message">Oops... Something happened!</span>
                             </div>
                         </div>
                         <div class="onglet-layout" data-onglet="3">
@@ -107,20 +120,45 @@
                                 <button class="btn2 dropzone-btn-submit">Convert</button>
                             </div>
                         </div>
-                        <div class="onglet-layout" data-onglet="2"></div>
+                        <div class="onglet-layout" data-onglet="2">
+                            <div class="error-contener">
+                                <span class="error"></span>
+                            </div>
+                        </div>
                         <div class="onglet-layout" data-onglet="3">
                             <div class="lod">
-                                <div></div>
+                                <div class="lod-cursor"></div>
                             </div>
                         </div>
                         <div class="onglet-layout" data-onglet="4">
                             <div class="dowl">
-                                <div><span>File</span></div>
-                                <div><span>Download</span></div>
-                                <div><span>example.tex</span></div>
-                                <div><a href="" class="dowl-link"><i class="fa-solid fa-download"></i></a></div>
-                                <div><span>example.pdf</span></div>
-                                <div><a href="" class="dowl-link"><i class="fa-solid fa-download"></i></a></div>
+                                <span>Download</span>
+                                <div class="dowl-table">
+                                    <div class="dowl-table-head">
+                                        <div>
+                                            <span>File</span>
+                                        </div>
+                                        <div>
+                                            <span>Download</span>
+                                        </div>
+                                    </div>
+                                    <div class="dowl-table-body">
+                                        <div>
+                                            <span id="texfilename">example.tex</span>
+                                        </div>
+                                        <div>
+                                            <a id="texdownload" href="" class="dowl-link"><i class="fa-solid fa-download"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="dowl-table-body pdfsection a-pdfsection">
+                                        <div>
+                                            <span id="pdffilename">example.pdf</span>
+                                        </div>
+                                        <div>
+                                            <a id="pdfdownload" href="" class="dowl-link"><i class="fa-solid fa-download"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,16 +182,10 @@
                             <span class="description">Wait a bit, we're working on it.</span>
                         </div>
                         <div class="onglet-layout" data-onglet="4">
-                            <span class="description">You can download your file just below.</span>
+                            <span class="description">You can download your file.</span>
                         </div>
                     </div>
                 </div>
-                
-
-
-
-
-
             </div>
         </div>
         <div class="right">

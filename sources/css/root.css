@@ -15,14 +15,50 @@
     /*Color palette*/
     --color-primary:   #000;
     --color-secondary:  #3a3a3a;
-    --color-tertiary: 228, 228, 255;
+    --color-tertiary: #e4e4ff;
 
     --color-background-layer1: #fff;
     --color-background-layer2: #f0f0f4;
     --color-background-layer3: #dadada;
 
-    --color-shadow: 238, 238, 238;
+    --color-shadow: #eeeeee;
     
-    --color-text-black: 0, 0, 0;
-    --color-text-white: 255, 255, 255;
+    --color-text-black: #000000;
+    --color-text-white: #ffffff;
+
+    /*Color palette for loader.css*/
+    --color-loader-layout-background: #eeeeee;
+    --color-loader-box-background: #ffffff;
+    --color-loader-background: #ffe38f;
+    --color-loader-before-background: #ffbe00;
+
+    /*Color palette for module.css*/
+    --color-switch-button-border: #dadada;
+    --color-switch-button-checked-border: #42414d;
+    --color-fa-sun-color: #ffbe00;
+    --color-fa-sun-text-shadow: #ffbe00;
+    --color-fa-moon-color: #ffffff;
+    --color-fa-moon-text-shadow: #ffffff;
+    --color-switch-button-checked-background: #000000;
+    --color-switch-button-checked-color: #ffffff;
+    --color-btn1-background: #ffbe00;
+    --color-btn1-color: #000000;
+    --color-btn1-hover: #ffe38f;
+    --color-application-dark-mode-btn1-hover: #9d7600;
+    --color-btn2-background: #ffbe00;
+    --color-btn2-bow-shadow: #ffe38f;
+    --color-btn2-hover: #ffe38f;
+    --color-application-dark-mode-btn2: #9d7600;
+    --color-application-dark-mode-btn2-hover: #9d7600;
+    --color-input-type-checkbox-border: #dadada;
+    --color-input-type-checkbox-before-background: #000000;
+    --color-input-type-checkbox-checked-before-background: #ffbe00;
+    --color-input-type-checkbox-checked-before-box-shadow: #ffbe00;
+    --color-application-dark-mode-input-type-checkbox-before-background: #ffffff;
+    --color-application-dark-mode-input-type-checkbox-before-box-shadow: #ffffff;
+    --color-application-dark-mode-input-type-checkbox-checked-before-background: #ffffff;
+    --color-application-dark-mode-input-type-checkbox-checked-before-box-shadow: #ffffff;
+    --color-application-dark-mode-input-type-checkbox-border: #42414d;
+
+    
 }

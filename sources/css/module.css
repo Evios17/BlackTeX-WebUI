@@ -10,28 +10,28 @@
 
     float: right;
 
-    border:2px solid #dadada;
+    border:2px solid var(--color-switch-button-border);
     border-radius:30px;
     
     cursor:pointer;
 }
 
 #switch-button:checked ~ label{
-    border:2px solid #42414d;
+    border:2px solid var(--color-switch-button-checked-border);
 }
 
 .fa-sun{
-    color:#ffbe00;
+    color: var(--color-fa-sun-color);
     font-size: 18px;
-    text-shadow: 0px 0px 20px #ffbe00;
+    text-shadow: 0px 0px 20px var(--color-fa-sun-text-shadow);
     transform: translateX(18px);
     transition:.3s;
 }
 
 .fa-moon{
-    color: #ffffff;
+    color: var(--color-fa-moon-color);
     font-size: 18px;
-    text-shadow: 0px 0px 20px #ffffff;
+    text-shadow: 0px 0px 20px var(--color-fa-moon-text-shadow);
     transform: translateX(0px);
     opacity: 0;
 }
@@ -47,8 +47,8 @@
 }
 
 #switch-button:checked ~ .content{
-    background: black;
-    color: white;
+    background: var(--color-switch-button-checked-background);
+    color: var(--color-switch-button-checked-color);
 }
 
 
@@ -61,20 +61,20 @@
     justify-content: center;
     align-items: center;
     
-    background-color: #ffbe00;
+    background-color: var(--color-btn1-background);
     border: none;
     border-radius: 20px;
 
     font-size: 1em;
     text-decoration: none;
-    color: #000000;
+    color: var(--color-btn1-color);
 
     animation: 1.5s spin forwards;
     cursor: pointer;
 }
 
 .btn1:hover{
-    box-shadow: 0 0 0 5px #ffe38f;
+    box-shadow: 0 0 0 5px var(--color-btn1-hover);
 }
 
 @keyframes spin {
@@ -90,7 +90,7 @@
 /* Darkmode */
 
 .application.dark-mode .btn1:hover{
-    box-shadow: 0 0 0 5px #9d7600;
+    box-shadow: 0 0 0 5px var(--color-application-dark-mode-btn1-hover);
 }
 
 .btn2{
@@ -98,8 +98,8 @@
     
     display: block;
     
-    background-color: #ffbe00;
-    box-shadow: 0 0 0 5px #ffe38f;
+    background-color: var(--color-btn2-background);
+    box-shadow: 0 0 0 5px var(--color-btn2-bow-shadow);
     border: none;
     border-radius: 20px;
 
@@ -111,15 +111,15 @@
 /* Darkmode */ 
 
 .btn2:hover{
-    box-shadow: 0 0 0 10px #ffe38f;
+    box-shadow: 0 0 0 10px var(--color-btn2-hover);
 }
 
 .application.dark-mode .btn2{
-    box-shadow: 0 0 0 5px #9d7600;
+    box-shadow: 0 0 0 5px var(--color-application-dark-mode-btn2);
 }
 
 .application.dark-mode .btn2:hover{
-    box-shadow: 0 0 0 10px #9d7600;
+    box-shadow: 0 0 0 10px var(--color-application-dark-mode-btn2-hover);
 }
 
 
@@ -128,7 +128,8 @@
 
 
 
-input[type='checkbox']/*, input[type='radio']*/{
+input[type='checkbox'], input[type='radio'] {
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
@@ -138,7 +139,7 @@ input[type="checkbox"]{
     padding: 4px 5px;
 
     background-color: transparent;
-    border:2px solid #dadada;
+    border:2px solid var(--color-input-type-checkbox-border);
     border-radius: 20px;
 
     cursor: pointer;
@@ -152,7 +153,7 @@ input[type="checkbox"]:before{
 
     display: block;
 
-    background-color: #000000;
+    background-color: var(--color-input-type-checkbox-before-background);
 
     box-shadow:0px 0px 20px transparent;
 
@@ -164,27 +165,27 @@ input[type="checkbox"]:before{
 input[type="checkbox"]:checked:before{
     transform: translateX(18px);
 
-    background-color: #ffbe00;
+    background-color: var(--color-input-type-checkbox-checked-before-background);
 
-    box-shadow: 0px 0px 20px #ffbe00;
+    box-shadow: 0px 0px 20px var(--color-input-type-checkbox-checked-before-box-shadow);
 }
 
 /* Darkmode */
 
 .application.dark-mode input[type="checkbox"]:before{
-    background-color: #ffffff;
+    background-color: var(--color-application-dark-mode-input-type-checkbox-before-background);
 
-    box-shadow: 0px 0px 20px #ffffff;
+    box-shadow: 0px 0px 20px var(--color-application-dark-mode-input-type-checkbox-before-box-shadow);
 }
 
 .application.dark-mode input[type="checkbox"]:checked:before{
     transform: translateX(18px);
 
-    background-color: #ffbe00;
+    background-color: var(--color-application-dark-mode-input-type-checkbox-checked-before-background);
 
-    box-shadow: 0px 0px 20px #ffbe00;
+    box-shadow: 0px 0px 20px var(--color-application-dark-mode-input-type-checkbox-checked-before-box-shadow);
 }
 
 .application.dark-mode input[type="checkbox"]{
-    border: 2px solid #42414d;
+    border: 2px solid var(--color-application-dark-mode-input-type-checkbox-border);
 }

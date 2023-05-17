@@ -48,6 +48,18 @@
 
     }
 
+    $uploadext = substr($_FILES['dropzone-file']['name'], -4);
+
+    if ($uploadext !== ".pgn") {
+
+        $return['status'] = "ERROR";
+        $return['message'] = "Wrong file extension type.";
+
+        echo json_encode($return, JSON_PRETTY_PRINT);
+        die();
+
+    }
+
     /// À PARTIR D'ICI, LES PRÉ-REQUIS DE BASE DE LA REQUÊTE SONT VALIDÉS
 
     // Initiation des variables d'arguments
@@ -226,7 +238,7 @@
 
             "links" => [
 
-                "tex" => $_SERVER['SERVER_NAME'].$uri.'data/'.$tmp_name.'/output.tex',
+                "tex" => $uri.'data/'.$tmp_name.'/output.tex',
                 "pdf" => false
 
             ]
@@ -251,7 +263,11 @@
 
     );
 
-    $process = proc_open('xelatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/output.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
+    // Si l'utilisateur souhaite afficher les NAGs, on utilise le compilateur qui supporte les caractères unicodes
+    if (!$nonags) $process = proc_open('xelatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/output.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
+
+    // Si l'utilisateur ne veut pas afficher les NAGs, on utilise le compilateur par défaut
+    if ($nonags) $process = proc_open('pdflatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/output.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
 
     // Si le procéssus n'a pas été créé
     if (!$process) {

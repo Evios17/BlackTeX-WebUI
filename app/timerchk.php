@@ -38,8 +38,8 @@
                     // Encoder les données JSON dans un array
                     $info = json_decode($inforaw, true);
 
-                    // Si la valeure de "created" est supérieur à 5 minutes depuis sa création, supprimer le contenu du dossier et le dossier lui-même
-                    if ($info['created']+300 < time()) {
+                    // Si la valeure de "created" est supérieur à 1 heure depuis sa création, supprimer le contenu du dossier et le dossier lui-même
+                    if ($info['created']+3600 < time()) {
 
                         foreach ($indirs as $file) {
 

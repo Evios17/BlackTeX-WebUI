@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
 
-    background-color: #eeeeee27;
+    background-color: var(--color-loader-layout-background);
     backdrop-filter: blur(10px);
 
     font-size: 18px;
@@ -21,7 +21,7 @@
 .loader-box{
     padding: 30px 40px;
 
-    background-color: #ffffff;
+    background-color: var(--color-loader-box);
 
     border-radius: 20px;
 
@@ -40,7 +40,7 @@
 
     position: relative;
     
-    background-color: #ffe38f;
+    background-color: var(--color-loader-background);
     border-radius: 50%;
 
     animation: loader 1s infinite alternate;
@@ -56,7 +56,7 @@
 
     position: absolute;
 
-    background-color: #ffbe00;
+    background-color: var(--color-loader-before-background);
     border-radius: 50%;
 
     animation: loader 1s infinite alternate;
