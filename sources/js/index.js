@@ -152,7 +152,7 @@
             file = event.dataTransfer.files[0];
             fileName = event.dataTransfer.files[0].name;
 
-            co4ntent.classList.add("a-dropzone-content");
+            content.classList.add("a-dropzone-content");
             submit.classList.add("a-dropzone-btn-submit");
             option.classList.add("a-dropzone-option");
             cancel1.classList.add("a-dropzone-btn-cancel");
