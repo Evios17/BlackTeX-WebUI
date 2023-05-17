@@ -174,7 +174,6 @@
 
     // On place le fichier témoin dans le dossier de traitement
     file_put_contents(__DIR__.'/data/'.$tmp_name.'/info.json', json_encode($info, JSON_PRETTY_PRINT));
-    //fclose(fopen(__DIR__.'/data/'.$tmp_name.'/info.json', 'a'));
 
     // Tentation de déplacement du fichier
     if (!move_uploaded_file($_FILES['dropzone-file']['tmp_name'], $input)) {
@@ -268,10 +267,10 @@
     );
 
     // Si l'utilisateur souhaite afficher les NAGs, on utilise le compilateur qui supporte les caractères unicodes
-    if (!$nonags) $process = proc_open('xelatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/output.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
+    if (!$nonags) $process = proc_open('xelatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/' . $name . '.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
 
     // Si l'utilisateur ne veut pas afficher les NAGs, on utilise le compilateur par défaut
-    if ($nonags) $process = proc_open('pdflatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/output.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
+    if ($nonags) $process = proc_open('pdflatex -output-directory=' . __DIR__ . '/data/' . $tmp_name . '/ ' . __DIR__ . '/data/' . $tmp_name . '/' . $name . '.tex | tee ' . __DIR__ . '/data/' . $tmp_name . '/cmdoutput.log', $descriptorspec, $pipes);
 
     // Si le procéssus n'a pas été créé
     if (!$process) {

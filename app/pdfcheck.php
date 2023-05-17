@@ -42,14 +42,25 @@
 
     }
 
-    //$inforaw = file_get_contents(__DIR__ . '/data/' . $_POST['id'] . '/info.json');
+    $inforaw = file_get_contents(__DIR__ . '/data/' . $_POST['id'] . '/info.json');
 
-    //$info = json_decode($inforaw, true);
+    // Si le fichier info.json n'a pas pu être lu ou n'existe pas
+    if ($inforaw === false) {
+
+        $return["status"] = "ERROR";
+        $return["message"] = "Can't get info on ID process.";
+
+        echo json_encode($return, JSON_PRETTY_PRINT);
+        die();
+
+    }
+
+    $info = json_decode($inforaw, true);
 
     // Récupération du fichier input pour compter le nombre de ligne du fichier TeX
-    $inputfile = file(__DIR__ . '/data/' . $_POST['id'] . '/output.tex');
+    $inputfile = file(__DIR__ . '/data/' . $_POST['id'] . '/' . $info['name'] . '.tex');
 
-    // Récupartion du fichier output de la commande du convertisseur LaTeX to PDF
+    // Récupération du fichier output de la commande du convertisseur LaTeX to PDF
     $cmdoutput = file(__DIR__ . '/data/' . $_POST['id'] . '/cmdoutput.log');
 
     $found = false;
@@ -57,7 +68,7 @@
     $end = false;
 
     // On parcoure les dernières lignes du fichier cmdoutput.log jusqu'à trouver une référence du progrès de la conversion
-    for ($i=count($cmdoutput)-1 ; $i > 0 ; $i--) {
+    for ( $i = count($cmdoutput)-1 ; $i > 0 ; $i-- ) {
 
         if ($found) break;
 
@@ -101,7 +112,7 @@
         $info['status'] = "COMPLETE";
         $info['created'] = time();
 
-        file_put_contents(__DIR__ . '/data/' . $_POST['id'] . '/info.json');
+        file_put_contents(__DIR__ . '/data/' . $_POST['id'] . '/info.json', json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
         $return['status'] = "SUCCESS";
         $return['message'] = "The PDF has been successfully converted.";
