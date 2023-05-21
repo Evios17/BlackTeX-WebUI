@@ -60,5 +60,66 @@
     --color-application-dark-mode-input-type-checkbox-checked-before-box-shadow: #ffffff;
     --color-application-dark-mode-input-type-checkbox-border: #42414d;
 
-    
+    /*Color palette for index.css*/
+    --color-application-background: #f0f0f4;
+    --color-onglet-box-color: #a3a3a3;
+    --color-onglet-color: #a3a3a3;
+    --color-a-onglet-color: #000000;
+    --color-box-background: #ffffff;
+    --color-box-box-shadow: #f9f9fb;
+    --color-box-onglet-container-first-child-onglet-content-background: #f0f0f4;
+    --color-dropzone-box-shadow: #f0f0f4;
+    --color-dropzone-border: #dadada;
+    --color-a-dropzone-box-shadow: #aed4ff;
+    --color-a-dropzone-border: #0077ff;
+    --color-dropzone-option-background: #ffffff;
+    --color-dropzone-option-border: #dadada;
+    --color-dropzone-table-background: #f0f0f4;
+    --color-error-contener-border: #dadada;
+    --color-dowl-border: #dadada;
+    --color-dowl-table-background: #f0f0f4;
+    --color-dowl-table-head-background: #ffbe00;
+    --color-dowl-table-head-color: #000000;
+    --color-dowl-table-body-background-hover: #dadada;
+    --color-dowl-a-color: #000000;
+    --color-description-color: #a3a3a3;
+    --color-lod-background1: #f0f0f4;
+    --color-lod-background2: #ffffff;
+    --color-lod-box-shadow: #f9f9fb;
+    --color-lod-cursor-background: #ffbe00;
+    --color-lod-cursor-box-shadow: #ffbe00;
+    --color-right-background: #ffffff;
+    --color-right-box-shadow: #dddddd;
+    --color-sl-background: #ffffff;
+
+    /*Color palette for index.css (Dark Mode)*/
+    --color-application-dark-mode-background: #1c1b22;
+    --color-application-dark-mode-box-background: #2b2a33;
+    --color-application-dark-mode-box-box-shadow: #23222b;
+    --color-application-dark-mode-box-onglet-container-first-child-onglet-content-background: #1c1b22;
+    --color-application-dark-mode-dropzone-border: #2b2a33;
+    --color-application-dark-mode-dropzone-box-shadow: #1c1b22;
+    --color-application-dark-mode-a-dropzone-box-shadow: #526173;
+    --color-application-dark-mode-a-dropzone-border: #004ea8;
+    --color-application-dark-mode-onglet-a-onglet-color: #ffffff;
+    --color-application-dark-mode-dropzone-btn-background: #ffbe00;
+    --color-application-dark-mode-dropzone-btn-box-shadow: #9d7600;
+    --color-application-dark-mode-dropzone-btn-hover-box-shadow: #9d7600;
+    --color-application-dark-mode-dropzone-option-background: #2b2a33;
+    --color-application-dark-mode-dropzone-option-border: #42414d;
+    --color-application-dark-mode-dropzone-option-color: #ffffff;
+    --color-application-dark-mode-dropzone-table-background: #1c1b22;
+    --color-application-dark-mode-lod-background1: #1c1b22;
+    --color-application-dark-mode-lod-background2: #2b2a33;
+    --color-application-dark-mode-lod-box-shadow: #23222b;
+    --color-application-dark-mode-error-contener-application-dark-mode-dowl-border: #42414d;
+    --color-application-dark-mode-dowl-a-color: #ffffff;
+    --color-application-dark-mode-dowl-table-background: #1c1b22;
+    --color-application-dark-mode-dowl-table-body-background: #2b2a33;
+    --color-applicationdark-mode-right-background: #2b2a33;
+    --color-application-dark-mode-right-box-shadow: #23222b;
+    --color-application-dark-mode-right-color: #a3a3a3;
+    --color-application-dark-mode-sl-background: #2b2a33;
+    --color-application-dark-mode-sl-color: #ffffff;
+
 }

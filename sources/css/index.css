@@ -5,7 +5,7 @@
 
     display: flex;
 
-    background-color: #f0f0f4;
+    background-color: var(--color-application-background);
 }
 
 .left{
@@ -37,7 +37,7 @@
 }
 
 .onglet-box > i{
-    color: #a3a3a3;
+    color: var(--color-onglet-box-color);
 }
 
 .onglet{
@@ -49,11 +49,11 @@
 
     font-size: 1em;
     font-weight: bold;
-    color: #a3a3a3;
+    color: var(--color-onglet-color);
 }
 
 .a-onglet{
-    color: #000000;
+    color: var(--color-a-onglet-color);
 }
 
 .box{
@@ -67,8 +67,8 @@
 
     position: relative;
 
-    background-color: #ffffff;
-    box-shadow: 0 0 0 5px #f9f9fb;
+    background-color: var(--color-box-background);
+    box-shadow: 0 0 0 5px var(--color-box-box-shadow);
     border-radius: 40px;
 }
 
@@ -112,7 +112,7 @@
     align-items: center;
     gap: 30px;
 
-    background-color: #f0f0f4;
+    background-color: var(--color-box-onglet-container-first-child-onglet-content-background);
 
     text-align: center;
 }
@@ -166,18 +166,18 @@
     position: relative;
 
     background-color: transparent;
-    box-shadow: 0 0 0 5px #f0f0f4;
+    box-shadow: 0 0 0 5px var(--color-dropzone-box-shadow);
 
-    border: 2px dashed #dadada;
+    border: 2px dashed var(--color-dropzone-border);
     border-radius: 20px;
 
     text-align: center;
 }
 
 .a-dropzone{
-    box-shadow: 0 0 0 5px #aed4ff;
+    box-shadow: 0 0 0 5px var(--color-a-dropzone-box-shadow);
 
-    border: 2px dashed #0077ff;
+    border: 2px dashed var(--color-a-dropzone-border);
 }
 
 .dropzone-output{
@@ -241,8 +241,8 @@
     flex-direction: column;
     gap: 30px;
 
-    background-color: #ffffff;
-    border: 2px solid #dadada;
+    background-color: var(--color-dropzone-option-background);
+    border: 2px solid var(--color-dropzone-option-border);
     border-radius: 20px;
 }
 
@@ -265,7 +265,7 @@
     grid-template-rows: 1fr;
     grid-gap: 15px;
 
-    background-color: #f0f0f4;
+    background-color: var(--color-dropzone-table-background);
 
     border-radius: 20px;
 }
@@ -288,7 +288,7 @@
 
     padding: 10px;
 
-    border: 2px solid #dadada;
+    border: 2px solid var(--color-error-contener-border);
     border-radius: 20px;
 
     text-align: center;
@@ -303,7 +303,7 @@
     flex-direction: column;
     gap: 30px;
 
-    border: 2px solid #dadada;
+    border: 2px solid var(--color-dowl-border);
     border-radius: 20px;
 }
 
@@ -315,7 +315,7 @@
 .dowl-table{
     padding: 20px;
 
-    background-color: #f0f0f4;
+    background-color: var(--color-dowl-table-background);
 
     border-radius: 20px;
 }
@@ -337,11 +337,11 @@
     margin: 0 0 10px 0;
     padding: 5px 15px;
 
-    background-color: #ffbe00;
+    background-color: var(--color-dowl-table-head-background);
 
     border-radius: 10px;
 
-    color: #000000;
+    color: var(--color-dowl-table-head-color);
 }
 
 .dowl-table-body > div:nth-child(2){
@@ -355,12 +355,12 @@
 }
 
 .dowl-table-body > div:nth-child(2):hover{
-    background-color: #dadada;
+    background-color: var(--color-dowl-table-body-background-hover);
 }
 
 .dowl a{
     text-decoration: none;
-    color: #000000;
+    color: var(--color-dowl-a-color);
 }
 
 .pdfsection{
@@ -383,7 +383,7 @@
 .description{
     text-align: center;
     font-size: 1em;
-    color: #a3a3a3;
+    color: var(--color-description-color);
 }
 
 .onglet-container{
@@ -403,9 +403,9 @@
     justify-content: flex-start;
     align-items: stretch;
 
-    background: linear-gradient(to left , #f0f0f4, #fff);
+    background: linear-gradient(to left , var(--color-lod-background1), var(--color-lod-background2));
 
-    box-shadow: 0 0 0 5px #f9f9fb;
+    box-shadow: 0 0 0 5px var(--color-lod-box-shadow);
 
     border-radius: 20px;
 
@@ -415,11 +415,11 @@
 .lod-cursor{
     width: 0%;
 
-    background: #ffbe00;
+    background: var(--color-lod-cursor-background);
 
     border-radius: 20px;
 
-    box-shadow: 0 0 30px 0 #ffbe00;
+    box-shadow: 0 0 30px 0 var(--color-lod-cursor-box-shadow);
 }
 
 
@@ -440,8 +440,8 @@
 
     position: relative;
 
-    background-color: #fff;
-    box-shadow: 0 0 10px 0#dddddd;
+    background-color: var(--color-right-background);
+    box-shadow: 0 0 10px 0 var(--color-right-box-shadow);
 }
 
 .a-right{
@@ -449,23 +449,21 @@
 }
 
 .sl{
-    padding: 10px 10px 10px 5px;
+    padding: 10px;
 
     position: absolute;
-    left: -34px;
+    left: -30px;
     top: 50%;
-    transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%);
 
-    background-color: #fff;
+    background-color: var(--color-sl-background);
 
     border: none;
-    border-radius: 0 20px 20px 0;
+    border-radius: 20px 0 0 20px;
 
     /* box-shadow: 0 0 10px 0#dddddd; */
 
     font-size: 1em;
-    writing-mode: vertical-rl;
-    
 
     cursor: pointer;
 }
@@ -503,93 +501,93 @@
 /* Dark mode */
 
 .application.dark-mode{
-    background-color: #1c1b22;
+    background-color: var(--color-application-dark-mode-background);
 }
 
 .application.dark-mode .box{
-    background-color: #2b2a33;
+    background-color: var(--color-application-dark-mode-box-background);
     
-    box-shadow: 0 0 0 5px #23222b;
+    box-shadow: 0 0 0 5px var(--color-application-dark-mode-box-box-shadow);
 
     color : #fff;
 }
 
 .application.dark-mode .box .onglet-container:first-child .onglet-content{
-    background-color: #1c1b22;
+    background-color: var(--color-application-dark-mode-box-onglet-container-first-child-onglet-content-background);
 }
 
 .application.dark-mode .dropzone{
-    border: 2px dashed #2b2a33;
+    border: 2px dashed var(--color-application-dark-mode-dropzone-border);
 
-    box-shadow:  0 0 0 5px #1c1b22;
+    box-shadow:  0 0 0 5px var(--color-application-dark-mode-dropzone-box-shadow);
 
     background-color: transparent;
 }
 
 .application.dark-mode .a-dropzone{
-    box-shadow: 0 0 0 5px #526173;
+    box-shadow: 0 0 0 5px var(--color-application-dark-mode-a-dropzone-box-shadow);
 
-    border: 2px dashed #004ea8;
+    border: 2px dashed var(--color-application-dark-mode-a-dropzone-border);
 }
 
 .application.dark-mode .onglet.a-onglet{
-    color: #ffffff;
+    color: var(--color-application-dark-mode-onglet-a-onglet-color);
 }
 
 .application.dark-mode .dropzone-btn{
-    background-color: #ffbe00;
+    background-color: var(--color-application-dark-mode-dropzone-btn-background);
 
-    box-shadow: 0 0 0 5px #9d7600;
+    box-shadow: 0 0 0 5px var(--color-application-dark-mode-dropzone-btn-box-shadow);
 }
 
 .application.dark-mode .dropzone-btn:hover{
-    box-shadow: 0 0 0 10px #9d7600;
+    box-shadow: 0 0 0 10px var(--color-application-dark-mode-dropzone-btn-hover-box-shadow);
 }
 
 .application.dark-mode .dropzone-option{
-    background-color: #2b2a33;
+    background-color: var(--color-application-dark-mode-dropzone-option-background);
     
-    border: 2px solid #42414d;
+    border: 2px solid var(--color-application-dark-mode-dropzone-option-border);
 
-    color : #fff;
+    color : var(--color-application-dark-mode-dropzone-option-color);
 }
 
 .application.dark-mode .dropzone-table{
-    background-color: #1c1b22;
+    background-color: var(--color-application-dark-mode-dropzone-table-background);
 }
 
 .application.dark-mode .lod{
-    background: linear-gradient(to left , #1c1b22, #2b2a33);
+    background: linear-gradient(to left , var(--color-application-dark-mode-lod-background1), var(--color-application-dark-mode-lod-background2));
 
-    box-shadow: 0 0 0 5px #23222b;
+    box-shadow: 0 0 0 5px var(--color-application-dark-mode-lod-box-shadow);
 }
 
 .application.dark-mode .error-contener, .application.dark-mode .dowl{
-    border: 2px solid #42414d;
+    border: 2px solid var(--color-application-dark-mode-error-contener-application-dark-mode-dowl-border);
 }
 
 .application.dark-mode .dowl a{
-    color: #fff;
+    color: var(--color-application-dark-mode-dowl-a-color);
 }
 
 .application.dark-mode .dowl-table{
-    background-color: #1c1b22;
+    background-color: var(--color-application-dark-mode-dowl-table-background);
 }
 
 .application.dark-mode .dowl-table-body > div:nth-child(2):hover{
-    background-color: #2b2a33;
+    background-color: var(--color-application-dark-mode-dowl-table-body-background);
 }
 
 .application.dark-mode .right{
-    background-color: #2b2a33;
+    background-color: var(--color-applicationdark-mode-right-background);
 
-    box-shadow: 0 0 10px 0 #23222b;
+    box-shadow: 0 0 10px 0 var(--color-application-dark-mode-right-box-shadow);
 
-    color: #a3a3a3;
+    color: var(--color-application-dark-mode-right-color);
 }
 
 .application.dark-mode .sl{
-    background-color: #2b2a33;
+    background-color: var(--color-application-dark-mode-sl-background);
 
-    color: #fff;
+    color: var(--color-application-dark-mode-sl-color);
 }

@@ -11,3 +11,5 @@ cp build/blacktex ../app/exe/. &&
 cd .. &&
 
 rm -rf r208-BlackTeX
+
+echo -e '\nSetup complete\n';

@@ -1,3 +1,3 @@
-$(window).load(function() {
-    $(".loader-layout").fadeOut("slow");;
+$(document).ready(function() {
+    $(".loader-layout").fadeOut("slow");
 });

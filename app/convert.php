@@ -1,4 +1,4 @@
-<?php
+    <?php
 
     // Si on accède au script via url
     if (!defined('INCLUDED')) {
@@ -189,7 +189,7 @@
     /// ÉTAPE 3 - Conversion du fichier PGN
 
     // Tentation de conversion de PGN vers LaTeX
-    if (!exec(__DIR__. '/exe/blacktex --input ' . $input . ' --output ' . $output . ' --counts ' . $counts . ' ' . $nonags, $cmdoutput, $rvalue)) {
+    if (!exec(__DIR__. '/exe/blacktex --input ' . $input . ' --output ' . $output . ' --counts ' . $counts . ' ' . $nonags . ' --stats --web', $cmdoutput, $rvalue)) {
 
         $return['status'] = "ERROR";
         $return['message'] = "An error happened while trying to convert the PGN file.";
@@ -244,7 +244,8 @@
                 "tex" => $uri . 'data/' . $tmp_name . '/' . $name . '.tex',
                 "pdf" => false
 
-            ]
+            ],
+            "stats" => $cmdoutput
 
         ];
 
@@ -302,7 +303,8 @@
             "tex" => $uri . 'data/' . $tmp_name . '/' . $name . '.tex',
             "pdf" => $tmp_name
 
-        ]
+        ],
+        "stats" => $cmdoutput
 
     ];
 

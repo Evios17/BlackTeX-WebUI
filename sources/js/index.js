@@ -242,8 +242,6 @@
                             return response.json();
                         })
                         .then(json => {
-                            
-                            console.log(JSON.stringify(json));
 
                             // Si un erreur s'est produite
                             if (json.status === "ERROR") {
@@ -253,15 +251,18 @@
                                 error.textContent = "An error happened while trying to convert the file.";
                                 logs.textContent = "ERR : " + json.message;
                                 throw new Error("TeX convertion passed, but not PDF process");
+
                             }
 
                             // Si il y a un "SUCCESS", terminer la boucle
                             if (json.status === "SUCCESS") {
+
                                 end = true;
                                 document.querySelector("#pdfdownload").href = json.content.links.pdf;
                                 ongletSelector(4);
+
                             }
-                            
+
                             // Inscrire le pourcetage de l'avancée de la convertion
                             lod.style.width = Math.trunc(json.content.progress) + "%";
                         }
@@ -325,9 +326,15 @@
                             throw new Error("Data sent but something happened server-side");
                         }
 
+
+                        for (let i=0; i < json.content.stats.length-1; i++) {
+                            // Affiche les stats de la console php dans l'afficheur de la GUI
+                            logs.innerHTML += '<p>'+json.content.stats[i]+'</p>';
+
+                        }
+
                         // Si le client n'as pas choisi de faire la convertion en PDF, rediriger vers la page de téléchargement
                         if (json.content.links.pdf == false) {
-                            
                             
                             document.querySelector("#texfilename").textContent = fileNameNoExt + ".tex";
                             document.querySelector("#texdownload").href = json.content.links.tex;
@@ -347,7 +354,7 @@
                         document.querySelector("#texdownload").href = json.content.links.tex;
                         document.querySelector("#pdffilename").textContent = fileNameNoExt + ".pdf";
                         document.querySelector(".pdfsection").classList.add("a-pdfsection");
-    
+
                         // On continue le script dans une fonction pour check l'avancée de la convertion en PDF
                         fetchProgress(json.content.links.pdf);
 

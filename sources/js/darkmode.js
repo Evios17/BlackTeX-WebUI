@@ -1,8 +1,7 @@
-function toggleDarkMode() {
-    var elements = document.querySelector(".application");
-
-    elements.classList.toggle("dark-mode");
-}
+// Événement qui surveille le click du bouton
+document.getElementById("switch-button").addEventListener('click', () => {
+    document.querySelector(".application").classList.toggle("dark-mode");
+});
 
 // Fonction qui détecte si le mode sombre est activé dans les préférences système
 function detectColorScheme() {
@@ -16,6 +15,9 @@ function detectColorScheme() {
         document.getElementById("switch-button").checked = false;
     }
 }
+
+// Événement qui se lance au changement de la page
+window.onload = detectColorScheme();
 
 // Événement qui surveille les changements de préférences système
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
