@@ -1,4 +1,4 @@
-# BlackTeX-webui
+# BlackTeX-WebUI
 
 ### About this project
 BlackTeX-webui is a front-end for [BlackTeX](https://github.com/Sparkyu222/r208-BlackTeX), a PGN to LaTeX converter. You just need to input a PGN file, and it will give you a beautiful TeX or PDF file. This front end was created in order to make the usage of BlackTex easier.
